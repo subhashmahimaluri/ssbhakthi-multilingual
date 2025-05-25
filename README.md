@@ -38,3 +38,42 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+
+
+## Local Env Setup
+
+# .env.te (Telugu/English instance):
+envDEFAULT_LOCALE=te
+SUPPORTED_LOCALES=te,en
+PORT=3000
+INSTANCE_TYPE=te-en
+
+# .env.hi (Hindi instance):
+envDEFAULT_LOCALE=hi
+SUPPORTED_LOCALES=hi
+PORT=3001
+INSTANCE_TYPE=hi
+
+# .env.kn (Kannada instance):
+envDEFAULT_LOCALE=kn
+SUPPORTED_LOCALES=kn
+PORT=3002
+INSTANCE_TYPE=kn
+
+# Development
+npm run dev:te          # Telugu/English instance (port 3000)
+npm run dev:hi          # Hindi instance (port 3001)
+npm run dev:kn          # Kannada instance (port 3002)
+npm run dev:all         # All instances simultaneously
+
+# Production Build
+npm run build:te        # Build Telugu/English
+npm run build:hi        # Build Hindi
+npm run build:kn        # Build Kannada
+npm run build:all       # Build all instances
+
+# Production Start
+npm run start:te        # Start Telugu/English (port 3000)
+npm run start:hi        # Start Hindi (port 3001)
+npm run start:kn        # Start Kannada (port 3002)
+npm run start:all       # Start all instances
