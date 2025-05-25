@@ -22,7 +22,7 @@ A powerful multilingual Next.js application supporting **Telugu**, **English**, 
 
 ## 🏗️ Tech Stack
 
-- **Framework**: Next.js 14
+- **Framework**: Next.js 15
 - **Language**: TypeScript
 - **UI Library**: React Bootstrap 2.x
 - **Styling**: CSS + Bootstrap
