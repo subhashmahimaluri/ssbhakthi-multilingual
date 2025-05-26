@@ -4,66 +4,27 @@ import { Row, Col, Card, Button } from 'react-bootstrap';
 import Layout from '@/components/Layout/Layout';
 import { useTranslation } from '@/hooks/useTranslation';
 import { GetStaticProps } from 'next';
+import PanchangamTable from '@/components/PanchangamTable';
+import Panchangam from '@/components/Panchangam';
 
 const HomePage: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <Layout title={t.pages.home.title}>
-      <Row className="mb-5">
-        <Col lg={8} className="mx-auto text-center">
-          <h1 className="display-4 mb-4">{t.pages.home.title}</h1>
-          <p className="lead mb-4">{t.pages.home.subtitle}</p>
-          <p className="mb-4">{t.pages.home.description}</p>
-          <Button variant="primary" size="lg" href="/about">
-            {t.navigation.about}
-          </Button>
+    <Layout>
+      <Row className="py-5 mt-25">
+        <Col lg="5" md="12" className="py-5 my-5">
+        <div className="right-container bg-white shadow-1 text-black px-3 py-3 mb-3">
+        <h4>Search Bar</h4>
+        </div>
         </Col>
-      </Row>
-
-      <Row>
-        <Col md={4} className="mb-4">
-          <Card>
-            <Card.Body>
-              <Card.Title>{t.navigation.about}</Card.Title>
-              <Card.Text>
-                Learn more about our multilingual application and its features.
-              </Card.Text>
-              <Button variant="outline-primary" href="/about">
-                {t.common.welcome}
-              </Button>
-            </Card.Body>
-          </Card>
+        <Col lg="7" md="12" className="py-5 my-5">
+        <div className="left-container bg-white shadow-1 panchangam-block">
+          <Panchangam />
+          <PanchangamTable />
+          </div>
         </Col>
-        
-        <Col md={4} className="mb-4">
-          <Card>
-            <Card.Body>
-              <Card.Title>{t.navigation.contact}</Card.Title>
-              <Card.Text>
-                Get in touch with us for any questions or inquiries.
-              </Card.Text>
-              <Button variant="outline-primary" href="/contact">
-                {t.navigation.contact}
-              </Button>
-            </Card.Body>
-          </Card>
-        </Col>
-        
-        <Col md={4} className="mb-4">
-          <Card>
-            <Card.Body>
-              <Card.Title>{t.common.language}</Card.Title>
-              <Card.Text>
-                Switch between Telugu and English languages easily.
-              </Card.Text>
-              <Button variant="outline-primary">
-                {t.common.switchLanguage}
-              </Button>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+  </Row>
     </Layout>
   );
 };

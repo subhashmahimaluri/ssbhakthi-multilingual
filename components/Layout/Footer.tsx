@@ -11,11 +11,11 @@ const Footer: React.FC = () => {
       <Container>
         <Row>
           <Col md={6}>
-            <h5>{t.common.welcome}</h5>
-            <p>© 2024 Multilingual Next.js App</p>
+            <h5>welcome</h5>
+            <p>© 2025 Yexaa Technologies Pvt Ltd</p>
           </Col>
           <Col md={6}>
-            <h5>{t.navigation.contact}</h5>
+            <h5>contact</h5>
             <p>Email: info@example.com</p>
           </Col>
         </Row>
