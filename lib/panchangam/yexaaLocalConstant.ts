@@ -20,8 +20,8 @@ export class YexaaLocalConstant {
       'చైత్ర',
     ],
     name_en_IN: [
-      'Baisakha', 'Jyestha', 'Asadha', 'Srabana', 'Bhadraba', 'Aswina',
-      'Karttika', 'Margasira', 'Pausa', 'Magha', 'Phalguna', 'Chaitra',
+      'vishakam', 'jyesta', 'ashada', 'sravana', 'badhrapada', 'aswayuja',
+      'karthika', 'margasira', 'pusya', 'magha', 'phalguna', 'chaitra',
     ],
   };
 
@@ -57,7 +57,7 @@ export class YexaaLocalConstant {
       'శనివారం',
     ],
     name_en_UK: [
-      'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
+      'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday',
     ],
   };
 
@@ -92,16 +92,16 @@ export class YexaaLocalConstant {
       'రేవతి',
     ],
     name_en_IN: [
-      'Ashwini', 'Dwija', 'Krittika', 'Rohini', 'Mrigashirsha', 'Ardra',
-      'Punarvasu', 'Pushya', 'Ashlesha', 'Magha', 'Purva Phalguni', 'Uttara Phalguni',
-      'Hasta', 'Chitra', 'Swati', 'Vishakha', 'Anuradha', 'Jyeshtha',
-      'Mula', 'Purva Ashadha', 'Uttara Ashadha', 'Sravana', 'Dhanishta',
-      'Shatabhisha', 'Purva Bhadrapada', 'Uttara Bhadrapada', 'Rebati',
+      'ashwini', 'bharani', 'krithika', 'rohini', 'mrigashirsha', 'ardra',
+      'punarvasu', 'pushya', 'ashlesha', 'makha', 'purva_phalguni', 'uttara_phalguni',
+      'hasta', 'chitra', 'swati', 'vishaka', 'anuradha', 'jyeshta',
+      'moola', 'purva_ashadha', 'uttara_ashadha', 'shravana', 'dhanishta',
+      'shatabhisha', 'purva_bhadrapada', 'uttara_bhadrapada', 'revati'
     ],
   };
 
   Paksha = {
-    name_en_IN: ['Shukla', 'Krishna'],
+    name_en_IN: ['shukla_paksha', 'krishna_paksha'],
     name_en_UK: ['Waxing Moon', 'Waning Moon'],
     name: ['శుక్ల', 'కృష్ణ'],
   };
@@ -116,19 +116,19 @@ export class YexaaLocalConstant {
       'ఏకాదశి', 'ద్వాదశి', 'త్రయోదశి', 'చతుర్దశి', 'అమావాస్య',
     ],
     name_en_IN: [
-      'Padyami', 'Vidhiya', 'Thadiya', 'Chavithi', 'Panchami',
-      'Shasti', 'Sapthami', 'Ashtami', 'Navami', 'Dasami',
-      'Ekadasi', 'Dvadasi', 'Trayodasi', 'Chaturdasi', 'Punnami',
-      'Padyami', 'Vidhiya', 'Thadiya', 'Chaviti', 'Panchami',
-      'Shasti', 'Sapthami', 'Ashtami', 'Navami', 'Dasami',
-      'Ekadasi', 'Dvadasi', 'Trayodasi', 'Chaturdasi', 'Amavasya',
+      'padyami', 'vidhiya', 'thadiya', 'chaviti', 'panchami',
+      'shasti', 'saptami', 'ashtami', 'navami', 'dasami',
+      'ekadasi', 'dvadasi', 'trayodasi', 'chaturdasi', 'pournami',
+      'padyami', 'vidhiya', 'thadiya', 'chaviti', 'panchami',
+      'shasti', 'saptami', 'ashtami', 'navami', 'dasami',
+      'ekadasi', 'dvadasi', 'trayodasi', 'chaturdasi', 'amavasya'
     ],
   };
 
   Karna = {
     name_en_IN: [
-      'Bawa', 'Balava', 'Kaulava', 'Taitula', 'Garaja',
-      'Vanija', 'Vishti', 'Sakuna', 'Chatushpada', 'Nagava', 'Kimstughana',
+      'bawa', 'balava', 'kaulava', 'taitula', 'garaja',
+      'vanija', 'vishti', 'sakuna', 'chatushpada', 'nagava', 'kimstughana'
     ],
     name: [
       'బవ', 'బాలవ', 'కౌలవ', 'తైతిల', 'గర', 'వాణిజ్య',
@@ -138,11 +138,11 @@ export class YexaaLocalConstant {
 
   Yoga = {
     name_en_IN: [
-      'Vishkambha', 'Prithi', 'Ayushman', 'Saubhagya', 'Sobhana', 'Atiganda',
-      'Sukarman', 'Dhrithi', 'Soola', 'Ganda', 'Vridhi', 'Dhruva',
-      'Vyaghata', 'Harshana', 'Vajra', 'Siddhi', 'Vyatipata', 'Variyan',
-      'Parigha', 'Siva', 'Siddha', 'Sadhya', 'Subha', 'Sukla', 'Bramha',
-      'Indra', 'Vaidhruthi',
+      'vishkambha', 'prithi', 'ayushman', 'saubhagya', 'sobhana', 'atiganda',
+      'sukarman', 'dhrithi', 'soola', 'ganda', 'vridhi', 'dhruva',
+      'vyaghata', 'harshana', 'vajra', 'siddhi', 'vyatipata', 'variyan',
+      'parigha', 'siva', 'siddha', 'sadhya', 'subha', 'sukla', 'bramha',
+      'indra', 'vaidhruthi'
     ],
     name: [
       'విష్కంభ', 'ప్రీతి', 'ఆయుష్మాన్', 'సౌభాగ్య', 'శోభన', 'అతిగండ',

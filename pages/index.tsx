@@ -5,7 +5,6 @@ import Layout from '@/components/Layout/Layout';
 import { useTranslation } from '@/hooks/useTranslation';
 import { GetStaticProps } from 'next';
 import PanchangamTable from '@/components/PanchangamTable';
-import Panchangam from '@/components/Panchangam';
 
 const HomePage: React.FC = () => {
   const { t } = useTranslation();
@@ -20,7 +19,6 @@ const HomePage: React.FC = () => {
         </Col>
         <Col lg="7" md="12" className="py-5 my-5">
         <div className="left-container bg-white shadow-1 panchangam-block">
-          <Panchangam />
           <PanchangamTable />
           </div>
         </Col>

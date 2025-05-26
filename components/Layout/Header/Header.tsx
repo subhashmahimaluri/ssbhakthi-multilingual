@@ -9,11 +9,12 @@ import styled from "styled-components";
 import { device } from '@/utils/breakpoints';
 import TopBar from './TopBar';
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+import { useTranslation } from '@/hooks/useTranslation';
 
 const navItems = [
   { name: 'Home', href: '/' },
-  { name: 'Articles', href: '/articles' },
-  {name: 'Calendar', href: "/calendar"}
+  {name: 'Calendar', href: "/calendar"},
+  { name: 'Panchangam', href: '/panchangam' }
 ];
 
 type NavItem = {

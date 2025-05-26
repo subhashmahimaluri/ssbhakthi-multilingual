@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { tithiMap } from '@/utils/tithiMap';
 import { Row, Col } from "react-bootstrap";
 import { capitalize } from '@/utils/utils';
+import { useTranslation } from '@/hooks/useTranslation';
 
 type TithiListProps = {
   title?: string;
@@ -11,6 +12,8 @@ type TithiListProps = {
 };
 
 export default function TithiList({ title, currentTithi, year }: TithiListProps) {
+  const { t } = useTranslation();
+
   const resolvedYear = year || new Date().getFullYear();
   const tithiNames = Object.keys(tithiMap);
 
@@ -28,7 +31,7 @@ export default function TithiList({ title, currentTithi, year }: TithiListProps)
               href={`/calendar/tithi/${tithi}-${resolvedYear}`}
               className="text-center gr-hover-shadow-1 d-flex flex-column border px-2 py-2"
             >
-              {capitalize(tithi)}
+              {t.panchangam[tithi]}
             </Link>
             </Col>
           ))}

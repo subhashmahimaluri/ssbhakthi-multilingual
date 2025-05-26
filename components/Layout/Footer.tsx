@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
             <p>© 2025 Yexaa Technologies Pvt Ltd</p>
           </Col>
           <Col md={6}>
-            <h5>contact</h5>
+            <h5>{t.panchangam.panchang}</h5>
             <p>Email: info@example.com</p>
           </Col>
         </Row>

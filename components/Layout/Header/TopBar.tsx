@@ -1,16 +1,22 @@
 import Link from 'next/link';
 import { useTranslation } from '@/hooks/useTranslation';
 import { Locale } from '@/locales';
+import NProgress from 'nprogress';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function TopBar() {
     const { t, locale, switchLanguage } = useTranslation();
+    const router = useRouter();
+    const pathname = usePathname();
 
     const languages = [
         { code: 'te' as Locale, name: 'తెలుగు', flag: '🇮🇳' },
         { code: 'en' as Locale, name: 'English', flag: '🇺🇸' }
     ];
-    const currentLanguage = languages.find(lang => lang.code === locale);
     const iconClassName = "text-storm gr-hover-text-white";
+    const currentLanguage = languages.find(lang => lang.code === locale);
 
   return (
     <div className="row top-bar">
@@ -20,11 +26,12 @@ export default function TopBar() {
                 {languages.map((language, index) => (
                   <li key={index}>
                         <Link
-                            className={locale === language.code ? 'lang-active' : ""}
-                            href="/"
-                            locale={language.code}
-                            >
-                            {language.name}
+                          href={pathname} // keep the current path
+                          locale={language.code}
+                          onClick={(e) => switchLanguage(language.code)}
+                          className={locale === language.code ? 'lang-active' : ""}
+                        >
+                          {language.name}
                         </Link>
                     </li>
                 ))}

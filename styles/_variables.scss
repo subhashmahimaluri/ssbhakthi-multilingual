@@ -1,7 +1,6 @@
 
 // styles/variables.scss - Global SCSS Variables
 // =====================================================
-@import url('https://fonts.googleapis.com/css2?family=Hind+Guntur:wght@300;400;500;600;700&display=swap');
 // Language-specific variables
 $font-family-telugu: 'Noto Sans Telugu', 'Gautami', 'Raavi', sans-serif;
 $font-family-hindi: 'Noto Sans Devanagari', 'Mangal', 'Kokila', sans-serif;
@@ -53,7 +52,7 @@ $body-color:                rgba(22,28,45,0.4);
 $border-color:              #e7e9ed;
 
 $link-color:                              $primary;
-$link-hover-color:                        darken($link-color, 15%);
+$link-hover-color: $link-color;
 $link-decoration:                         none;
 $link-hover-decoration:                   none;
 

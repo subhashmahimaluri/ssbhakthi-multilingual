@@ -49,6 +49,20 @@ export const formatFullDate = (date: Date | string): string => {
   });
 };
 
+export const formatMonth = (date: Date | string): string => {
+  const inputDate = new Date(date);
+  return inputDate.toLocaleString('en-US', {
+    month: 'long',
+  }).toLowerCase();
+};
+
+export const formatDay = (date: Date | string): string => {
+  const inputDate = new Date(date);
+  return inputDate.toLocaleString('en-US', {
+    day: '2-digit',
+  });
+};
+
 const monthOrder = [
   'January', 'February', 'March', 'April', 'May', 'June',
   'July', 'August', 'September', 'October', 'November', 'December'
@@ -88,3 +102,19 @@ export function groupTithiByMonth(tithiResults: any[]): { month: string; tithiDa
 
 export const capitalize = (word: string) =>
   word.charAt(0).toUpperCase() + word.slice(1);
+
+export function interpolate(
+  template: string | undefined | null,
+  variables: Record<string, string | number | undefined | null> = {}
+): string {
+  if (typeof template !== 'string') {
+    return '';
+  }
+
+  return template.replace(/{{(.*?)}}/g, (_, key: string) => {
+    const trimmedKey = key.trim();
+
+    const value = variables[trimmedKey];
+    return typeof value === 'string' || typeof value === 'number' ? value.toString() : '';
+  });
+}

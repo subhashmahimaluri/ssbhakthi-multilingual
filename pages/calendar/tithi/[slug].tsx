@@ -7,10 +7,11 @@ import { YexaaPanchang } from '@/lib/panchangam';
 import { getTithiNumbersByName } from '@/utils/tithiMap';
 import TithiList from '@/components/TithiList';
 import LocationAccordion from '@/components/LocationAccordion';
-import { capitalize, groupTithiByMonth } from '@/utils/utils';
+import { capitalize, groupTithiByMonth, interpolate } from '@/utils/utils';
 import TithiYearNavigation from '@/components/TithiYearNavigation';
 import Layout from '@/components/Layout/Layout';
 import { useLocation } from '@/context/LocationContext';
+import { useTranslation } from '@/hooks/useTranslation';
 
 type TithiInfo = {
   tithi: {
@@ -43,6 +44,8 @@ export default function TithiPage() {
   const [year, setYear] = useState<number | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
+  const { t } = useTranslation();
+
   const { lat, lng, city, timezone, country, setLocationData } = useLocation();
 
   useEffect(() => {
@@ -63,7 +66,7 @@ export default function TithiPage() {
     const grouped = groupTithiByMonth(allTithiDates);
 
     setDates(grouped);
-    setTithiName(capitalize(name));
+    setTithiName(name);
     setYear(parsedYear);
     setLoading(false);
   }, [slug, lng, lat]);
@@ -78,12 +81,14 @@ export default function TithiPage() {
       <Col xl="8" lg="8" md="12" className="py-5 my-5">
           <div className="py-3 left-container bg-white shadow-1 panchangam-block text-black px-5 px-md-10">
               <h1 className="text-xl font-bold mb-2">
-        {tithiName} Tithi {year}
+        {t.panchangam[tithiName]} {t.panchangam.tithi} {year}
       </h1>
-      <p className="mb-4">
-        List of all {year} {tithiName} dates and their exact start and end times
-        for {city}, {country}.
-      </p>
+      <p className="mb-4">{interpolate(t.panchangam.tithi_list_desc, {
+        year,
+        tithiName: t.panchangam[tithiName],
+        city,
+        country
+      })}</p>
       <LocationAccordion city={city} country={country}  />
       <table className="table-tith table table-bordered border-gray mt-3">
         <tbody>
@@ -91,13 +96,18 @@ export default function TithiPage() {
             <Fragment key={index}>
               <tr className="bg-gray-opacity text-cente">
                 <td colSpan={2}>
-                  <h4 className="pt-3">{tithiName} in {date.month}</h4>
+                  <h4 className="pt-3">
+                    {interpolate(t.panchangam.tithi_list_month, {
+                      tithi: t.panchangam[tithiName],
+                      month: t.panchangam[date.month.toLowerCase()]
+                    })}
+                  </h4>
                 </td>
               </tr>
               {date.tithiData.map((tithi, idx) => (
                 <tr key={idx}>
                   <td>
-                    {tithi.masa.name_en_IN} {tithi.paksha.name_en_IN} {tithi.tithi.name_en_IN}
+                    {t.panchangam[tithi.masa.name_en_IN]} {t.panchangam[tithi.paksha.name_en_IN]} {t.panchangam[tithi.tithi.name_en_IN]}
                   </td>
                   <td>
                     {format(new Date(tithi.tithi.start), 'dd MMM yyyy hh:mm a')} –{' '}

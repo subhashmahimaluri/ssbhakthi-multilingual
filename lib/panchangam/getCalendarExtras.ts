@@ -4,9 +4,9 @@
  */
 export function getAyana(solarLongitudeDeg: number): string {
   if (solarLongitudeDeg >= 270 || solarLongitudeDeg < 90) {
-    return 'Uttarayana';
+    return 'uttarayana';
   } else {
-    return 'Dakshinayana';
+    return 'dakshinayana';
   }
 }
 
@@ -15,7 +15,7 @@ export function getAyana(solarLongitudeDeg: number): string {
  */
 export function getDrikRitu(solarLongitudeDeg: number): string {
   const index = Math.floor(solarLongitudeDeg / 60) % 6;
-  const rituList = ['Vasanta', 'Grishma', 'Varsha', 'Sharad', 'Hemanta', 'Shishira'];
+  const rituList = ['vasanta', 'grishma', 'varsha', 'sharad', 'hemanta', 'shishira'];
   return rituList[index];
 }
 
@@ -25,16 +25,16 @@ export function getDrikRitu(solarLongitudeDeg: number): string {
  */
 export function getTeluguYearName(sakaYear: number): string {
   const teluguYearNames = [
-    'Prabhava', 'Vibhava', 'Shukla', 'Pramoda', 'Prajothpatti', 'Aangirasa',
-    'Shrimukha', 'Bhava', 'Yuva', 'Dhathu', 'Eeshwara', 'Bahudhanya',
-    'Pramathi', 'Vikrama', 'Vrisha', 'Chitrabhanu', 'Subhanu', 'Taarana',
-    'Paarthiva', 'Vyaya', 'Sarvajit', 'Sarvadhari', 'Virodhi', 'Vikruti',
-    'Khara', 'Nandana', 'Vijaya', 'Jaya', 'Manmatha', 'Durmukhi',
-    'Hevilambi', 'Vilambi', 'Vikaari', 'Shaarvari', 'Plava', 'Shubhakrit',
-    'Shobhakrith', 'Krodhi', 'Vishwavasu', 'Parabhava', 'Plavanga', 'Keelaka',
-    'Saumya', 'Sadharana', 'Virodhikrith', 'Paridhavi', 'Pramadicha', 'Aananda',
-    'Rakshasa', 'Nala', 'Pingala', 'Kalayukthi', 'Siddharthi', 'Raudra',
-    'Durmathi', 'Dundubhi', 'Rudhirodgaari', 'Raktakshi', 'Krodhana', 'Akshaya'
+    'prabhava', 'vibhava', 'shukla', 'pramoda', 'prajothpatti', 'aangirasa',
+    'shrimukha', 'bhava', 'yuva', 'dhathu', 'eeshwara', 'bahudhanya',
+    'pramathi', 'vikrama', 'vrisha', 'chitrabhanu', 'subhanu', 'taarana',
+    'paarthiva', 'vyaya', 'sarvajit', 'sarvadhari', 'virodhi', 'vikruti',
+    'khara', 'nandana', 'vijaya', 'jaya', 'manmatha', 'durmukhi',
+    'hevilambi', 'vilambi', 'vikaari', 'shaarvari', 'plava', 'shubhakrit',
+    'shobhakrith', 'krodhi', 'vishwavasu', 'parabhava', 'plavanga', 'keelaka',
+    'saumya', 'sadharana', 'virodhikrith', 'paridhavi', 'pramadicha', 'aananda',
+    'rakshasa', 'nala', 'pingala', 'kalayukthi', 'siddharthi', 'raudra',
+    'durmathi', 'dundubhi', 'rudhirodgaari', 'raktakshi', 'krodhana', 'akshaya'
   ];
 
   const index = (sakaYear - 1) % 60;
