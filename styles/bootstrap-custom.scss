@@ -1,0 +1,127 @@
+// =====================================================
+// styles/bootstrap-custom.scss - Bootstrap Customization
+// =====================================================
+
+// Import Bootstrap functions and variables first
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+// Override Bootstrap variables
+$primary: $primary-color;
+$secondary: $secondary-color;
+$success: $success-color;
+$danger: $danger-color;
+$warning: $warning-color;
+$info: $info-color;
+
+// Custom Bootstrap theme colors
+$custom-colors: (
+  "telugu": $telugu-accent,
+  "hindi": $hindi-accent,
+  "kannada": $kannada-accent,
+  "english": $english-accent
+);
+
+// Merge with Bootstrap's $theme-colors
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+// Font customization
+$font-family-sans-serif: $font-family-english;
+$font-size-base: 1rem;
+$line-height-base: 1.6;
+
+// Spacing customization
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer * 4,
+  7: $spacer * 5
+);
+
+// Border radius
+$border-radius: 0.375rem;
+$border-radius-sm: 0.25rem;
+$border-radius-lg: 0.5rem;
+
+// Import Bootstrap components
+@import "~bootstrap/scss/bootstrap";
+
+// =====================================================
+// styles/globals.scss - Updated Global Styles
+// =====================================================
+
+// Import custom Bootstrap first
+@import 'bootstrap-custom';
+
+// Import other style modules
+@import 'animations';
+@import 'utilities';
+@import 'languages';
+
+// Global base styles
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $font-family-english;
+  line-height: $line-height-base;
+  color: $body-color;
+  background-color: $body-bg;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Remove default link styles
+a {
+  color: inherit;
+  text-decoration: none;
+  
+  &:hover {
+    color: $primary-color;
+  }
+}
+
+// Focus styles for accessibility
+:focus-visible {
+  outline: 2px solid $primary-color;
+  outline-offset: 2px;
+}
+
+// Custom scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $secondary-color;
+  border-radius: 4px;
+  
+  &:hover {
+    background: darken($secondary-color, 10%);
+  }
+}
+
+// Print styles
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
