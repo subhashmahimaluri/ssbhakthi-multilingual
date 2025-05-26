@@ -1,3 +1,4 @@
+import { useTranslation } from '@/hooks/useTranslation';
 import { capitalize } from '@/utils/utils';
 import Link from 'next/link';
 import { Row, Col } from "react-bootstrap";
@@ -5,6 +6,8 @@ import { Row, Col } from "react-bootstrap";
 export default function TithiYearNavigation({ tithiName, currentYear }: { tithiName: string; currentYear: number }) {
   const prevYear = currentYear - 1;
   const nextYear = currentYear + 1;
+
+  const { t } = useTranslation();
 
   return (
     <Row className="my-2">
@@ -14,7 +17,7 @@ export default function TithiYearNavigation({ tithiName, currentYear }: { tithiN
         className="fw-bold"
       >
         <span className="text-xl fw-bold">← </span>
-        <span>{capitalize(tithiName)} {prevYear}</span>
+        <span>{t.panchangam[tithiName]} {prevYear}</span>
       </Link>
         </Col>
         <Col xl="6" lg="6" md="6" className="py-2 my-2 text-end">
@@ -22,7 +25,7 @@ export default function TithiYearNavigation({ tithiName, currentYear }: { tithiN
         href={`/calendar/tithi/${tithiName.toLowerCase()}-${nextYear}`}
         className="fw-bold"
       >
-        <span>{capitalize(tithiName)} {nextYear}</span>
+        <span>{t.panchangam[tithiName]} {nextYear}</span>
         <span className="text-xl fw-bold"> →</span>
       </Link>
         </Col>

@@ -11,6 +11,9 @@ export interface PanchangamData {
   masa?: string;
   paksha?: string;
   day?: string;
+  ayana?: string;
+  ritu?: string;
+  teluguYear?: string;
 }
 
 export interface SunTime {

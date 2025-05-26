@@ -1,4 +1,3 @@
-@import '@fortawesome/fontawesome-free/css/all.min.css';
 body {
   background: $gray-120;
 }
@@ -29,7 +28,7 @@ body {
           color: $white;
         }
         &.lang-active {
-            color: $white;
+            color: $white !important;
         }
       }
     }
@@ -145,49 +144,27 @@ body {
   background-color: #dee2e6 !important;
 }
 
-// Accordion
-.accordion-item {
-  background-color: #fcfdfe;
-  border: 1px solid #dee2e6;
-  margin-bottom: 20px;
+.icon-bold-angle {
+  position: absolute;
+  right: 28px;
+  top: 28px;
+  font-size: 20px;
+  cursor: pointer;
+  transform: rotate(180deg);
 }
 
-.accordion-body {
-  padding: 5px 20px 0 10px;
-}
-
-.accordion-button {
-  background: transparent;
-  color: #fff;
-  font-weight: bold;
-  width: 100%;
-  border: 0;
-  box-shadow: none;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-
-  &:not(.collapsed) {
-    color: #e56602;
-    background-color: #fff1e6;
-    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.125);
+  .collapsed .icon-bold-angle {
+    color: #7d818d;
+    transform: none;
   }
 
-  &::after {
-    position: absolute;
-    right: 34px;
-    top: 34px;
-    display: none;
-  }
 
-  .icon-small-down::before {
-    font-size: 34px;
-    position: absolute;
-    top: -9px;
-    font-weight: bold;
-    right: -20px;
-  }
-}
+
+// Angle icons for accordion
+
+
+
+
 
 // Location AutoComplete
 .list_item_image {
@@ -208,28 +185,7 @@ body {
   cursor: pointer;
 }
 
-.icon-bold-remove {
-  position: absolute;
-  right: 28px;
-  top: 28px;
-  font-size: 20px;
-  cursor: pointer;
-}
 
-// Angle icons for accordion
-.icon-bold-angle {
-  position: absolute;
-  right: 28px;
-  top: 28px;
-  font-size: 20px;
-  cursor: pointer;
-  transform: rotate(180deg);
-}
-
-.collapsed .icon-bold-angle {
-  color: #7d818d;
-  transform: none;
-}
 
 // Pricing Section
 .pricing-card {
@@ -538,17 +494,7 @@ a {
   background-color: $primary_bg;
 }
 
-.panchangam-block {
-  .accordion-item {
-      background-color: transparent;
-      border: 0;
-      padding-left: 50px;
-      margin-bottom: 0 !important;
-  }
-  .accordion-body {
-    padding: 5px 20px 0 10px;
-  }
-  .accordion-button {
+.accordion-button {
       background: transparent;
       color: #fff;
       font-weight: bold;
@@ -570,6 +516,90 @@ a {
         display: none;
       }
   }
+// Accordion
+.panchangam-block .accordion-box {
+  .accordion-item {
+    background-color: #fcfdfe;
+    border: 1px solid #dee2e6;
+    margin-bottom: 20px;
+  }
+  .accordion-body {
+    padding: 5px 20px 0 10px;
+  }
+  .accordion-button {
+    width: 100%;
+    padding: 20px;
+  }
+.icon-bold-angle {
+    top: 32px;
+  }
+  .icon-bold-remove {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  font-size: 20px;
+  cursor: pointer;
+  }
+  .search-input-pn {
+    border: 1px solid $gray-600;
+  }
+}
+
+.panchang-header {
+  .search-input-pn {
+    width: 90% !important;
+  }
+  .fa-times-circle {
+    position: absolute;
+    top: 20px;
+    right: 80px;
+  }
+}
+
+.panchangam-block {
+  .accordion-item {
+      background-color: transparent;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      margin-bottom: 0 !important;
+  }
+  .accordion-body {
+    padding: 5px 20px 0 10px;
+  }
+  .accordion-button {
+  background: transparent;
+  color: #fff;
+  font-weight: bold;
+  width: 100%;
+  border: 0;
+  box-shadow: none;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+
+  &:not(.collapsed) {
+    color: #e56602;
+    background-color: #fff1e6;
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.125);
+  }
+
+  &::after {
+    position: absolute;
+    right: 34px;
+    top: 34px;
+    display: none;
+  }
+
+  .icon-small-down::before {
+    font-size: 34px;
+    position: absolute;
+    top: -9px;
+    font-weight: bold;
+    right: -20px;
+  }
+}
+  
 }
 
 .panchang-nav {
@@ -621,4 +651,31 @@ a {
 
 .article-container .search-input-pn {
   border: 1px solid $gray-600;
+}
+
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: $secondary3; // your theme color
+  position: fixed;
+  z-index: 1031;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+}
+
+/* Optional spinner */
+#nprogress .spinner {
+  display: none;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.slick-slider {
+  padding-left: 15px;
 }

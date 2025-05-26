@@ -1,157 +1,152 @@
-"use client";
-
 import React, { useEffect, useState } from 'react';
 import { YexaaPanchang } from '../lib/panchangam';
 import { moonRiseSet, ITRFCoord } from '@/lib/moonRiseSet';
-import { formatFullDateWithWeekday, formatTimeIST, startEndDateFormat } from '@/utils/utils';
+import { formatDay, formatFullDate, formatMonth, formatTimeIST, startEndDateFormat } from '@/utils/utils';
+import Link from 'next/link';
+import { Collapse } from 'react-bootstrap';
+import AutoComplete from './AutoComplete';
+import { useLocation } from '@/context/LocationContext';
+import { MoonTime, PanchangamData, SunTime } from '@/types/panchangam';
+import { useTranslation } from '@/hooks/useTranslation';
+import { format, addDays } from 'date-fns';
+import imgSprite from "../assets/images/icons/panchangam_sprite.png";
+import PanchangSlide from './PanchangSlide';
 
-const LAT_HYDERABAD = 17.385044;
-const LNG_HYDERABAD = 78.486671;
-// const today = new Date();
-const today = new Date("2025-06-26");
-
-interface PanchangamData {
-  tithi?: string;
-  tithiTime?: string;
-  nakshatra?: string;
-  nakshatraTime?: string;
-  yoga?: string;
-  karana?: string;
-  yogaTime?: string;
-  karanaTime?: string;
-  moonMasa?: string;
-  masa?: string;
-  paksha?: string;
-  day?: string;
+interface PanchangamProps {
+  date?: string | Date;
 }
 
-interface SunTime {
-  sunRise?: string;
-  sunSet?: string;
-}
-
-interface MoonTime {
-  rise?: Date;
-  set?: Date;
-}
-
-export default function PanchangamTable() {
+export default function PanchangamTable({ date }: PanchangamProps) {
+  const [openCollapse, setOpenCollapse] = useState(false);
   const [panchangamData, setPanchangamData] = useState<PanchangamData>({});
   const [sunTime, setSunTime] = useState<SunTime>({});
   const [moonTime, setMoonTime] = useState<MoonTime>({});
 
+  const { t } = useTranslation();
+  const { lat, lng, city, country } = useLocation();
+  const panchangamDate = date ? new Date(date) : new Date();
+
+  const getUrlDate = (offset: number) => format(addDays(panchangamDate, offset), 'yyyy-MM-dd');
+  const getLabelDate = (offset: number) => format(addDays(panchangamDate, offset), 'MMM d');
+
   useEffect(() => {
-    const calculatePanchangam = () => {
-      try {
-        const panchang = new YexaaPanchang();
+    try {
+      const panchang = new YexaaPanchang();
 
-        const panchangamCalendar = panchang.calendar(today, LAT_HYDERABAD, LNG_HYDERABAD);
-        const panchangamCalculate = panchang.calculate(today);
+      const calendar = panchang.calendar(panchangamDate, lat, lng);
+      const calculated = panchang.calculate(panchangamDate);
+      const sun = panchang.sunTimer(panchangamDate, lat, lng);
+      const moonDate = new Date(panchangamDate);
+      const moonCoords = ITRFCoord.fromGeodeticDeg(lat, lng, 0);
+      const moon = moonRiseSet(moonDate, moonCoords);
 
-        const sunTimes = panchang.sunTimer(today, LAT_HYDERABAD, LNG_HYDERABAD);
+      setPanchangamData({
+        tithi: calculated.Tithi?.name_en_IN || '',
+        tithiTime: startEndDateFormat(calculated.Tithi.start, calculated.Tithi.end),
+        nakshatra: calculated.Nakshatra?.name_en_IN || '',
+        nakshatraTime: startEndDateFormat(calculated.Nakshatra.start, calculated.Nakshatra.end),
+        yoga: calculated.Yoga?.name_en_IN || '',
+        yogaTime: startEndDateFormat(calculated.Yoga.start, calculated.Yoga.end),
+        karana: calculated.Karna?.name_en_IN || '',
+        karanaTime: startEndDateFormat(calculated.Karna.start, calculated.Karna.end),
+        moonMasa: calendar.MoonMasa?.name_en_IN || '',
+        masa: calendar.Masa?.name_en_IN || '',
+        paksha: calculated.Paksha?.name_en_IN || '',
+        day: calculated.Day?.name_en_UK || '',
+        ayana: calendar?.Ayana.name_en_IN || '',
+        ritu: calendar?.DrikRitu.name_en_IN || '',
+        teluguYear: calendar?.TeluguYear.name_en_IN || ''
+      });
 
-        const dateForMoon = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-        const groundPosition = ITRFCoord.fromGeodeticDeg(LAT_HYDERABAD, LNG_HYDERABAD, 0);
-        const moonTimes = moonRiseSet(dateForMoon, groundPosition);
+      setSunTime(sun);
+      setMoonTime(moon);
+    } catch (err) {
+      console.error("Error calculating Panchangam:", err);
+      setPanchangamData({});
+      setSunTime({});
+      setMoonTime({});
+    }
+  }, [lat, lng, date]);
 
-        const data: PanchangamData = {
-          tithi: panchangamCalculate.Tithi?.name_en_IN || '',
-          tithiTime: startEndDateFormat(panchangamCalculate.Tithi.start, panchangamCalculate.Tithi.end),
-          nakshatra: panchangamCalculate.Nakshatra?.name_en_IN || '',
-          nakshatraTime: startEndDateFormat(panchangamCalculate.Nakshatra.start, panchangamCalculate.Nakshatra.end),
-          yoga: panchangamCalculate.Yoga?.name_en_IN || '',
-          yogaTime: startEndDateFormat(panchangamCalculate.Yoga.start, panchangamCalculate.Yoga.end),
-          karana: panchangamCalculate.Karna?.name_en_IN || '',
-          karanaTime: startEndDateFormat(panchangamCalculate.Karna.start, panchangamCalculate.Karna.end),
-          moonMasa: panchangamCalendar.MoonMasa?.name_en_IN || '',
-          masa: panchangamCalendar.Masa?.name_en_IN || '',
-          paksha: panchangamCalculate.Paksha?.name_en_IN || '',
-          day: panchangamCalculate.Day?.name_en_UK || ''
-        };
-
-        setPanchangamData(data);
-        setSunTime(sunTimes);
-        setMoonTime(moonTimes);
-      } catch (error) {
-        console.error("Error calculating Panchangam:", error);
-        setSunTime({});
-        setMoonTime({});
-        setPanchangamData({});
-      }
-    };
-
-    calculatePanchangam();
-  }, []);
+  const renderItem = (title: string | undefined, key: string | undefined, time: string | undefined) => (
+    <div className="panchang-date">
+      <h4 className="gr-text-6 text-black">{title}</h4>
+      <ul className="list-unstyled gr-text-8 border-bottom pb-4">
+        <li><span className="fw-bold">{t.panchangam[key]}</span> : <span>{time}</span></li>
+      </ul>
+    </div>
+  );
 
   return (
-    <div className="panchang-box-details">
-      {/* Date Information */}
-      <div className="panchang-box-data-block panchang-data-day">
-        <ol className="text-sm">
-          <li><span className="font-bold">Date</span> - <span>{formatFullDateWithWeekday(today)}</span></li>
-          <li><span className="font-bold">Vikram Samvat</span> - <span>Kalayukti 2082, Vaisakha 24</span></li>
-          <li><span className="font-bold">Indian Civil Calendar</span> - <span>1947, Vaisakha 31</span></li>
-          <li><span className="font-bold">Purnimanta Month</span> - <span>{panchangamData.moonMasa}</span></li>
-          <li><span className="font-bold">Amanta Month</span> - <span>{panchangamData.masa}</span></li>
-        </ol>
+    <>
+      <div className="panchang-header text-black">
+        <div className="d-flex w-100 align-items-center">
+          <div className="pn-header-text flex-grow-1 pl-2">
+            <div className="panchang-nav py-1">
+              <ul className="list-unstyled">
+                <li className="nav-prev fw-bold"><Link href={`/panchangam/${getUrlDate(-1)}`}><i className="fa fa-angle-left" /> {getLabelDate(-1)}</Link></li>
+                <li className="nav-prev fw-bold"><Link href={`/panchangam/${format(new Date(), 'yyyy-MM-dd')}`}>Today</Link></li>
+                <li className="nav-next fw-bold"><Link href={`/panchangam/${getUrlDate(1)}`}>{getLabelDate(1)} <i className="fa fa-angle-right" /></Link></li>
+              </ul>
+            </div>
+            <div className="panchang-title fw-bold">
+              <span className="icon-sprite icon-sprite-balaji"></span>
+              <h4 className="text-black">{t.panchangam.panchang} {t.panchangam[formatMonth(panchangamDate)]} {formatDay(panchangamDate)}, {panchangamDate.getFullYear()}</h4>
+            </div>
+            <div className="collapse-search">
+              <div className="text-white collapse-header py-1 fw-bold" aria-expanded={openCollapse} onClick={() => setOpenCollapse(!openCollapse)}>
+                {city}, {country} <i className="fa fa-chevron-down"></i>
+              </div>
+              <Collapse in={openCollapse}><div id="collapse-text"><AutoComplete /></div></Collapse>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Tithi */}
-      <div className="panchang-box-data-block panchang-data-tithi">
-        <span className="block font-bold">Tithi</span>
-        <ol className="text-sm">
-          <li>
-            <span className="font-bold">{panchangamData.paksha} Paksha {panchangamData.tithi}</span>
-            &nbsp;-&nbsp;<span>{panchangamData.tithiTime}</span>
-          </li>
-        </ol>
+      <div className="overflow-hidden panchang-secondary-header px-4 px-lg-14 px-md-12 px-sm-2">
+        <PanchangSlide
+          sunrise={formatTimeIST(sunTime.sunRise)}
+          sunset={formatTimeIST(sunTime.sunSet)}
+          moonrise={formatTimeIST(moonTime.rise)}
+          moonset={formatTimeIST(moonTime.set)}
+        />
       </div>
 
-      {/* Nakshatra */}
-      <div className="panchang-box-data-block panchang-data-nakshatra">
-        <span className="block font-bold">Nakshatra</span>
-        <ol className="text-sm">
-          <li>
-            <span className="font-bold">
-              <a href="/astrology/nakshatra/satabhisha-nakshatra.htm">{panchangamData.nakshatra}</a>
-            </span>
-            &nbsp;-&nbsp;<span>{panchangamData.nakshatraTime}</span>
-          </li>
-        </ol>
+      <div className="pricing-card gr-hover-shadow-1 bg-white border gr-text-color py-2 px-4">
+        <div className="panchang-date">
+          <ul className="list-unstyled gr-text-8 border-bottom pb-3">
+            <li><span className="fw-bold">{t.panchangam.date}</span> : <span>{t.panchangam[formatMonth(panchangamDate)]} {formatDay(panchangamDate)}</span></li>
+            <li><span className="fw-bold">{t.panchangam.week_day}</span> : <span>{t.panchangam[panchangamData.day]}</span></li>
+            <li><span className="fw-bold">{t.panchangam.month}</span> : <span>{t.panchangam[panchangamData.moonMasa]}</span></li>
+            <li><span className="fw-bold">{t.panchangam.lunar_year}</span> : <span>{t.panchangam[panchangamData.teluguYear]}</span></li>
+            <li><span className="fw-bold">{t.panchangam.ruthu}</span> : <span>{t.panchangam[panchangamData.ritu]}</span></li>
+            <li><span className="fw-bold">{t.panchangam.ayana}</span> : <span>{t.panchangam[panchangamData.ayana]}</span></li>
+          </ul>
+        </div>
+        {renderItem(t.panchangam.tithi, panchangamData.tithi, panchangamData.tithiTime)}
+        {renderItem(t.panchangam.nakshatra, panchangamData.nakshatra, panchangamData.nakshatraTime)}
+        {renderItem(t.panchangam.karana, panchangamData.karana, panchangamData.karanaTime)}
+        {renderItem(t.panchangam.yoga, panchangamData.yoga, panchangamData.yogaTime)}
+        <div className="panchang-date">
+          <h4 className="gr-text-6 text-black">{t.panchangam.sun_moon_time}</h4>
+          <ul className="list-unstyled gr-text-8">
+            <li><span className="fw-bold">{t.panchangam.sunrise}</span> : {formatTimeIST(sunTime.sunRise)}</li>
+            <li><span className="fw-bold">{t.panchangam.sunset}</span> : {formatTimeIST(sunTime.sunSet)}</li>
+            <li><span className="fw-bold">{t.panchangam.moonrise}</span> : {formatTimeIST(moonTime.rise)}</li>
+            <li><span className="fw-bold">{t.panchangam.moonset}</span> : {formatTimeIST(moonTime.set)}</li>
+          </ul>
+        </div>
       </div>
 
-      {/* Sun & Moon Timing */}
-      <div className="panchang-box-data-block panchang-date">
-        <h4 className="gr-text-6 text-black block font-bold">Sun & Moon Timing</h4>
-        <ul className="list-unstyled gr-text-8">
-          <li><span className="font-bold">Sunrise</span> : {formatTimeIST(sunTime.sunRise)}</li>
-          <li><span className="font-bold">Sunset</span> : {formatTimeIST(sunTime.sunSet)}</li>
-          <li><span className="font-bold">Moonrise</span> : {formatTimeIST(moonTime.rise)}</li>
-          <li><span className="font-bold">Moonset</span> : {formatTimeIST(moonTime.set)}</li>
-        </ul>
-      </div>
-
-      {/* Karana */}
-      <div className="panchang-box-data-block panchang-data-karana">
-        <span className="block font-bold">Karana</span>
-        <ol className="text-sm">
-          <li>
-            <span className="font-bold">{panchangamData.karana}</span>
-            &nbsp;-&nbsp;<span>{panchangamData.karanaTime}</span>
-          </li>
-        </ol>
-      </div>
-
-      {/* Yoga */}
-      <div className="panchang-box-data-block panchang-data-yoga">
-        <span className="block font-bold">Yoga</span>
-        <ol className="text-sm">
-          <li>
-            <span className="font-bold">{panchangamData.yoga}</span>
-            &nbsp;-&nbsp;<span>{panchangamData.yogaTime}</span>
-          </li>
-        </ol>
-      </div>
-    </div>
+      <style jsx>{`
+        .icon-sprite {
+          background-image: url(${imgSprite.src});
+          background-repeat: no-repeat;
+          width: 56px;
+          height: 40px;
+          display: inline-block;
+        }
+      `}</style>
+    </>
   );
 }

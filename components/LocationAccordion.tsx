@@ -9,7 +9,7 @@ interface Location {
 export default function LocationAccordion({city, country}: Location) {
 
   return (
-    <Accordion>
+    <Accordion className="accordion-box">
         <Accordion.Item eventKey="0">
             <Accordion.Header>
                 <span className="gr-text-9 text-black mb-2"><i className="fas fa-calendar-alt me-2"></i>Change Location</span>

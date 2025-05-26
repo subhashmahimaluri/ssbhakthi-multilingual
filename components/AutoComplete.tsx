@@ -101,7 +101,7 @@ export default function AutoComplete() {
 
   return (
     <div className="w-100">
-      <div className="form-clear-text-wrapper px-2 py-3 mb-3 position-relative">
+      <div className="form-clear-text-wrapper px-0 py-2 mb-3 position-relative">
         <input
           className="w-100 py-2 px-2 search-input-pn"
           id="query"
