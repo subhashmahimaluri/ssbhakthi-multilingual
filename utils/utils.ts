@@ -129,3 +129,20 @@ export function interpolate(
     return typeof value === 'string' || typeof value === 'number' ? value.toString() : '';
   });
 }
+
+export const stotraToHtml = (text: string): string => {
+  const paragraphs = text.trim().split('\n\n');
+  return (
+    '<div>' +
+    paragraphs
+      .map(block => {
+        const lines = block
+          .split('\n')
+          .map(l => l.trim())
+          .join('<br/>');
+        return `<p>${lines}</p>`;
+      })
+      .join('') +
+    '</div>'
+  );
+};
