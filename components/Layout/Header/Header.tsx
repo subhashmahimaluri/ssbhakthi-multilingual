@@ -1,16 +1,14 @@
-import Link from 'next/link';
+import { device } from '@/utils/breakpoints';
+import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import SearchBarHeader from './SearchBarHeader';
 import { useState } from 'react';
-import React from 'react';
 import { Container } from 'react-bootstrap';
 import styled from 'styled-components';
-import { device } from '@/utils/breakpoints';
-import TopBar from './TopBar';
-import { useScrollPosition } from '@n8tb1t/use-scroll-position';
-import { useTranslation } from '@/hooks/useTranslation';
 import { menuItems } from './navItems';
+import SearchBarHeader from './SearchBarHeader';
+import TopBar from './TopBar';
 
 type NavItem = {
   name: string;
@@ -101,7 +99,7 @@ export default function Header() {
                       {hasSubItems ? (
                         <>
                           <a
-                            className="nav-link dropdown-toggle"
+                            className="nav-link dropdown-toggle gr-toggle-arrow"
                             href="#"
                             role="button"
                             data-bs-toggle="dropdown"
@@ -109,8 +107,9 @@ export default function Header() {
                             onClick={e => e.preventDefault()}
                           >
                             {item.name}
+                            <i className="fa-solid fa-angle-down"></i>
                           </a>
-                          <ul className="dropdown-menu">
+                          <ul className="gr-menu-dropdown dropdown-menu">
                             {Array.isArray(item.items) &&
                               item.items.map((subItem: NavItem, subIndex: number) => (
                                 <li className="dropdown-item" key={subItem.name + subIndex}>
