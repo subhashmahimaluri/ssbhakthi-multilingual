@@ -1,10 +1,9 @@
-import Link from 'next/link';
 import { useTranslation } from '@/hooks/useTranslation';
 import { Locale } from '@/locales';
-import NProgress from 'nprogress';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/router';
+import SocialIcons from '../SocialIcons';
 
 export default function TopBar() {
   const { t, locale, switchLanguage } = useTranslation();
@@ -40,28 +39,7 @@ export default function TopBar() {
 
       {/* Right: Social Icons */}
       <div className="col-6 topbar-social text-end">
-        <ul className="social-icons list-unstyled mb-lg-0 mb-1 mt-1 py-2">
-          <li className="me-0">
-            <Link href="https://www.facebook.com/nrsharmatv" className={iconClassName}>
-              <i className="icon fab fa-twitter"></i>
-            </Link>
-          </li>
-          <li className="me-0">
-            <Link href="https://twitter.com/NRSharmaTV" className={iconClassName}>
-              <i className="icon fab fa-facebook"></i>
-            </Link>
-          </li>
-          <li className="me-0">
-            <Link href="https://www.instagram.com/ssbhakthi/" className={iconClassName}>
-              <i className="icon fab fa-instagram"></i>
-            </Link>
-          </li>
-          <li className="me-0">
-            <Link href="https://in.pinterest.com/nrsharmatv/" className={iconClassName}>
-              <i className="icon fab fa-pinterest"></i>
-            </Link>
-          </li>
-        </ul>
+        <SocialIcons />
       </div>
     </div>
   );
