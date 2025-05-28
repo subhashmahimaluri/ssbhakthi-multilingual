@@ -23,10 +23,22 @@ export default class Quaternion {
 
   mult(a: Quaternion): void {
     this.raw = [
-      a.raw[3] * this.raw[0] + a.raw[0] * this.raw[3] + a.raw[1] * this.raw[2] - a.raw[2] * this.raw[1],
-      a.raw[3] * this.raw[1] - a.raw[0] * this.raw[2] + a.raw[1] * this.raw[3] + a.raw[2] * this.raw[0],
-      a.raw[3] * this.raw[2] + a.raw[0] * this.raw[1] - a.raw[1] * this.raw[0] + a.raw[2] * this.raw[3],
-      a.raw[3] * this.raw[3] - a.raw[0] * this.raw[0] - a.raw[1] * this.raw[1] - a.raw[2] * this.raw[2],
+      a.raw[3] * this.raw[0] +
+        a.raw[0] * this.raw[3] +
+        a.raw[1] * this.raw[2] -
+        a.raw[2] * this.raw[1],
+      a.raw[3] * this.raw[1] -
+        a.raw[0] * this.raw[2] +
+        a.raw[1] * this.raw[3] +
+        a.raw[2] * this.raw[0],
+      a.raw[3] * this.raw[2] +
+        a.raw[0] * this.raw[1] -
+        a.raw[1] * this.raw[0] +
+        a.raw[2] * this.raw[3],
+      a.raw[3] * this.raw[3] -
+        a.raw[0] * this.raw[0] -
+        a.raw[1] * this.raw[1] -
+        a.raw[2] * this.raw[2],
     ];
   }
 
@@ -75,7 +87,7 @@ export default class Quaternion {
   }
 
   angle_deg(): number {
-    return this.angle() * 180.0 / Math.PI;
+    return (this.angle() * 180.0) / Math.PI;
   }
 
   norm(): number {

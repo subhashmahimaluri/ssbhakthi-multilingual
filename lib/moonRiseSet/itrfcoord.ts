@@ -65,10 +65,7 @@ export default class ITRFCoord {
       this.raw[2] + b * ep2 * Math.pow(Math.sin(beta), 3),
       rho - wgs84_a * e2 * Math.pow(Math.cos(beta), 3)
     );
-    let betaNew = Math.atan2(
-      (1.0 - wgs84_f) * Math.sin(phi),
-      Math.cos(phi)
-    );
+    let betaNew = Math.atan2((1.0 - wgs84_f) * Math.sin(phi), Math.cos(phi));
 
     let count = 0;
     while (Math.abs(beta - betaNew) > 1.0e-6 && count < 5) {
@@ -77,10 +74,7 @@ export default class ITRFCoord {
         this.raw[2] + b * ep2 * Math.pow(Math.sin(beta), 3),
         rho - wgs84_a * e2 * Math.pow(Math.cos(beta), 3)
       );
-      betaNew = Math.atan2(
-        (1.0 - wgs84_f) * Math.sin(phi),
-        Math.cos(phi)
-      );
+      betaNew = Math.atan2((1.0 - wgs84_f) * Math.sin(phi), Math.cos(phi));
       count++;
     }
 
@@ -90,10 +84,7 @@ export default class ITRFCoord {
   qNED2ITRF(): Quaternion {
     const lat = this.latitude();
     const lon = this.longitude();
-    return Quaternion.mult(
-      Quaternion.rotz(-lon),
-      Quaternion.roty(lat + Math.PI / 2.0)
-    );
+    return Quaternion.mult(Quaternion.rotz(-lon), Quaternion.roty(lat + Math.PI / 2.0));
   }
 
   qENU2ITRF(): Quaternion {
@@ -112,19 +103,14 @@ export default class ITRFCoord {
       Quaternion.rotx(-lat + Math.PI / 2),
       Quaternion.rotz(lon + Math.PI / 2)
     );
-    return q.rotate([
-      this.raw[0] - ref.raw[0],
-      this.raw[1] - ref.raw[1],
-      this.raw[2] - ref.raw[2]
-    ]);
+    return q.rotate([this.raw[0] - ref.raw[0], this.raw[1] - ref.raw[1], this.raw[2] - ref.raw[2]]);
   }
 
   toNED(ref: ITRFCoord): [number, number, number] {
-    return ref.qNED2ITRF().conj().rotate([
-      this.raw[0] - ref.raw[0],
-      this.raw[1] - ref.raw[1],
-      this.raw[2] - ref.raw[2]
-    ]);
+    return ref
+      .qNED2ITRF()
+      .conj()
+      .rotate([this.raw[0] - ref.raw[0], this.raw[1] - ref.raw[1], this.raw[2] - ref.raw[2]]);
   }
 
   longitude_deg(): number {
@@ -148,9 +134,11 @@ export default class ITRFCoord {
   }
 
   toString(): string {
-    return `ITRFCoord(Latitude = ${this.latitude_deg().toFixed(3)} deg, ` +
+    return (
+      `ITRFCoord(Latitude = ${this.latitude_deg().toFixed(3)} deg, ` +
       `Longitude = ${this.longitude_deg().toFixed(3)} deg, ` +
-      `Height = ${this.height().toFixed(0)} m)`;
+      `Height = ${this.height().toFixed(0)} m)`
+    );
   }
 
   [inspect](): string {

@@ -28,7 +28,7 @@ body {
           color: $white;
         }
         &.lang-active {
-            color: $white !important;
+          color: $white !important;
         }
       }
     }
@@ -84,7 +84,7 @@ body {
   li {
     .nav-link {
       color: var(--color-texts);
-      padding: 28px;
+      padding: 28px 24px !important;
       font-size: 15px;
       font-weight: 700;
 
@@ -153,18 +153,12 @@ body {
   transform: rotate(180deg);
 }
 
-  .collapsed .icon-bold-angle {
-    color: #7d818d;
-    transform: none;
-  }
-
-
+.collapsed .icon-bold-angle {
+  color: #7d818d;
+  transform: none;
+}
 
 // Angle icons for accordion
-
-
-
-
 
 // Location AutoComplete
 .list_item_image {
@@ -184,8 +178,6 @@ body {
   background: #fff;
   cursor: pointer;
 }
-
-
 
 // Pricing Section
 .pricing-card {
@@ -208,10 +200,9 @@ body {
   background: $gray-120;
 }
 
-
 .hide-div {
   display: none !important;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .search-bar-input {
@@ -233,140 +224,139 @@ body {
 }
 
 a {
-    color: #fe7102;
-    text-decoration: none;
-  }
+  color: #fe7102;
+  text-decoration: none;
+}
 
-  .site-header{
-    &--absolute{
-      position: absolute;
+.site-header {
+  &--absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+  }
+  &--sticky {
+    &:not(.mobile-sticky-enable) {
+      position: absolute !important;
       top: 0;
-      left: 0;
+      right: 0;
       width: 100%;
       z-index: 999;
-    }
-    &--sticky{
-      &:not(.mobile-sticky-enable){
-        position: absolute!important;
-        top: 0;
-        right: 0;
-        width: 100%;
-        z-index: 999;
-        @include desktops{
-          position: fixed!important;
-          transition: .4s;
-          &.scrolling{
-            transform: translateY(-100%);
-            transition: .4s;
-            
-          }
-          &.reveal-header{
-            transform: translateY(0%);
-            box-shadow: 0 12px 34px -11px rgba(65, 62, 101, 0.1);
-            z-index: 9999;
-          }
-        }
-      }
-      &.mobile-sticky-enable{
-        top: 0;
-        right: 0;
-        width: 100%;
-        z-index: 999;
-        position: fixed!important;
-        transition: .4s;
-        &.scrolling{
+      @include desktops {
+        position: fixed !important;
+        transition: 0.4s;
+        &.scrolling {
           transform: translateY(-100%);
-          transition: .4s;
+          transition: 0.4s;
         }
-        &.reveal-header{
+        &.reveal-header {
           transform: translateY(0%);
           box-shadow: 0 12px 34px -11px rgba(65, 62, 101, 0.1);
           z-index: 9999;
         }
       }
     }
-    .top-bar {
-      ul.contact {
-        margin: 0px;
-        padding: 0px;
-        li {
-          display: inline-block;
+    &.mobile-sticky-enable {
+      top: 0;
+      right: 0;
+      width: 100%;
+      z-index: 999;
+      position: fixed !important;
+      transition: 0.4s;
+      &.scrolling {
+        transform: translateY(-100%);
+        transition: 0.4s;
+      }
+      &.reveal-header {
+        transform: translateY(0%);
+        box-shadow: 0 12px 34px -11px rgba(65, 62, 101, 0.1);
+        z-index: 9999;
+      }
+    }
+  }
+  .top-bar {
+    ul.contact {
+      margin: 0px;
+      padding: 0px;
+      li {
+        display: inline-block;
+        color: $black;
+        font-size: 14px;
+        font-weight: bold;
+        margin-right: 5px;
+        border-right: 1px solid $black;
+        &:last-child {
+          border: 0;
+          padding-left: 5px;
+        }
+        a {
+          margin-right: 10px;
           color: $black;
-          font-size: 14px;
-          font-weight: bold;
-          margin-right: 5px;
-          border-right: 1px solid $black;
-          &:last-child {
-            border: 0;
-            padding-left: 5px;
-          }
-          a {
-            margin-right: 10px;
-            color: $black;
-            &:hover {
-              color: $white;
-            }
-          }
-          &.lang-active a {
+          &:hover {
             color: $white;
           }
         }
-      }
-      ul.social-icons {
-        li {
-          font-size: 16px;
-          a {
-            color: #fff;
-            i {
-              color: $black;
-            }
-          }
+        &.lang-active a {
+          color: $white;
         }
       }
     }
-    &--menu{
-      &-left{
-        .container-fluid{
-          >.container-fluid{
-            .gr-megamenu-dropdown{
-              left: 0%;
-              transform: translateX(0%) translateY(10px);
-            }
-            .nav-item.dropdown:hover > .gr-megamenu-dropdown.center{
-              transform: translateX(0%) translateY(-10px);
-              left: 0%;
-            }
-          }
-        }
-        .navbar-nav-wrapper{
-          .navbar-nav{
-            justify-content: flex-start;
-            padding-left: 15px;
-          }
-          @include large-desktops{
-            width: 100%;
-          }
-        }
-      }
-      &-right{
-        .navbar-nav-wrapper{
-          margin-left: auto;
-        }
-        >.container-fluid{
-          .gr-megamenu-dropdown{
-            left: 100%;
-            transform: translateX(-100%) translateY(10px);
-          }
-          .nav-item.dropdown:hover > .gr-megamenu-dropdown.center{
-            transform: translateX(-100%) translateY(-10px);
-            left: 100%;
+    ul.social-icons {
+      li {
+        font-size: 16px;
+        a {
+          color: #fff;
+          i {
+            color: $black;
           }
         }
       }
     }
   }
+  &--menu {
+    &-left {
+      .container-fluid {
+        > .container-fluid {
+          .gr-megamenu-dropdown {
+            left: 0%;
+            transform: translateX(0%) translateY(10px);
+          }
+          .nav-item.dropdown:hover > .gr-megamenu-dropdown.center {
+            transform: translateX(0%) translateY(-10px);
+            left: 0%;
+          }
+        }
+      }
+      .navbar-nav-wrapper {
+        .navbar-nav {
+          justify-content: flex-start;
+          padding-left: 15px;
+        }
+        @include large-desktops {
+          width: 100%;
+        }
+      }
+    }
+    &-right {
+      .navbar-nav-wrapper {
+        margin-left: auto;
+      }
+      > .container-fluid {
+        .gr-megamenu-dropdown {
+          left: 100%;
+          transform: translateX(-100%) translateY(10px);
+        }
+        .nav-item.dropdown:hover > .gr-megamenu-dropdown.center {
+          transform: translateX(-100%) translateY(-10px);
+          left: 100%;
+        }
+      }
+    }
+  }
+}
 
-  .panchang-header {
+.panchang-header {
   background-color: $primary_bg;
   padding: 1rem;
   min-height: 85px;
@@ -433,15 +423,15 @@ a {
   height: 62px;
   width: 35px;
   border-radius: 2px;
-  background-color: rgba(0,0,0,.25);
+  background-color: rgba(0, 0, 0, 0.25);
   background-position: 50% 50%;
   background-repeat: no-repeat;
   z-index: 1;
-  transition:all 1s linear;
+  transition: all 1s linear;
   cursor: pointer;
   text-align: center;
   &:hover {
-    background-color: rgba(0,0,0,.6);
+    background-color: rgba(0, 0, 0, 0.6);
   }
   .icon {
     color: #fff;
@@ -495,27 +485,27 @@ a {
 }
 
 .accordion-button {
-      background: transparent;
-      color: #fff;
+  background: transparent;
+  color: #fff;
+  font-weight: bold;
+  margin: 0;
+  padding: 0 10px;
+  width: auto;
+  border: 0;
+  box-shadow: none;
+  .icon-small-down {
+    &:before {
+      font-size: 34px;
+      position: absolute;
+      top: -9px;
       font-weight: bold;
-      margin: 0;
-      padding: 0 10px;
-      width: auto;
-      border: 0;
-      box-shadow: none;
-      .icon-small-down {
-        &:before {
-          font-size: 34px;
-          position: absolute;
-          top: -9px;
-          font-weight: bold;
-          right: -20px;
-        }
-      }
-      &:after {
-        display: none;
-      }
+      right: -20px;
+    }
   }
+  &:after {
+    display: none;
+  }
+}
 // Accordion
 .panchangam-block .accordion-box {
   .accordion-item {
@@ -530,15 +520,15 @@ a {
     width: 100%;
     padding: 20px;
   }
-.icon-bold-angle {
+  .icon-bold-angle {
     top: 32px;
   }
   .icon-bold-remove {
-  position: absolute;
-  right: 18px;
-  top: 18px;
-  font-size: 20px;
-  cursor: pointer;
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    font-size: 20px;
+    cursor: pointer;
   }
   .search-input-pn {
     border: 1px solid $gray-600;
@@ -558,48 +548,47 @@ a {
 
 .panchangam-block {
   .accordion-item {
-      background-color: transparent;
-      border: 0;
-      padding: 0;
-      margin: 0;
-      margin-bottom: 0 !important;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 0 !important;
   }
   .accordion-body {
     padding: 5px 20px 0 10px;
   }
   .accordion-button {
-  background: transparent;
-  color: #fff;
-  font-weight: bold;
-  width: 100%;
-  border: 0;
-  box-shadow: none;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-
-  &:not(.collapsed) {
-    color: #e56602;
-    background-color: #fff1e6;
-    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.125);
-  }
-
-  &::after {
-    position: absolute;
-    right: 34px;
-    top: 34px;
-    display: none;
-  }
-
-  .icon-small-down::before {
-    font-size: 34px;
-    position: absolute;
-    top: -9px;
+    background: transparent;
+    color: #fff;
     font-weight: bold;
-    right: -20px;
+    width: 100%;
+    border: 0;
+    box-shadow: none;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+
+    &:not(.collapsed) {
+      color: #e56602;
+      background-color: #fff1e6;
+      box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.125);
+    }
+
+    &::after {
+      position: absolute;
+      right: 34px;
+      top: 34px;
+      display: none;
+    }
+
+    .icon-small-down::before {
+      font-size: 34px;
+      position: absolute;
+      top: -9px;
+      font-weight: bold;
+      right: -20px;
+    }
   }
-}
-  
 }
 
 .panchang-nav {
@@ -623,7 +612,7 @@ a {
       .icon {
         position: relative;
         top: 3px;
-        font-weight: bold
+        font-weight: bold;
       }
     }
   }

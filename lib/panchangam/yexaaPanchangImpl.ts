@@ -10,35 +10,7 @@ export class YexaaPanchangImpl {
   d2r = Math.PI / 180;
   r2d = 180 / Math.PI;
   range = [1, 31, 0, 0, -3000, 4000, 0, 23, 0, 59, -12, 12, 0, 59];
-  tipnaks = [
-    2,
-    5,
-    6,
-    0,
-    1,
-    4,
-    3,
-    2,
-    4,
-    5,
-    5,
-    0,
-    2,
-    1,
-    3,
-    6,
-    1,
-    4,
-    4,
-    5,
-    0,
-    3,
-    3,
-    3,
-    5,
-    0,
-    1,
-  ];
+  tipnaks = [2, 5, 6, 0, 1, 4, 3, 2, 4, 5, 5, 0, 2, 1, 3, 6, 1, 4, 4, 5, 0, 3, 3, 3, 5, 0, 1];
   Lmoon!: number;
   Lsun!: number;
   skor!: number;
@@ -67,23 +39,12 @@ export class YexaaPanchangImpl {
     // slope travels to the equator
     //let ob = 23.452294 - 0.0130125 * t - 0.00000164 * t2 + 0.000000503 * t3;
     // the average length moon
-    let l =
-      270.4337361 +
-      13.176396544528099 * tdays -
-      (5.86 * t2) / 3600 +
-      (0.0068 * t3) / 3600;
+    let l = 270.4337361 + 13.176396544528099 * tdays - (5.86 * t2) / 3600 + (0.0068 * t3) / 3600;
     // the difference medium length Moon and the Sun (the averageElongation Moon):
     let d =
-      350.7374861110581 +
-      445267.1142166667 * t -
-      t2 * 1.436111132303874e-3 +
-      0.0000018888889 * t3;
+      350.7374861110581 + 445267.1142166667 * t - t2 * 1.436111132303874e-3 + 0.0000018888889 * t3;
     // Perigee moon
-    let pe =
-      334.329556 +
-      (14648522.52 * t) / 3600 -
-      (37.17 * t2) / 3600 -
-      (0.045 * t3) / 3600;
+    let pe = 334.329556 + (14648522.52 * t) / 3600 - (37.17 * t2) / 3600 - (0.045 * t3) / 3600;
     // the average anomoly sun
     let ms =
       358.4758333333334 +
@@ -94,11 +55,7 @@ export class YexaaPanchangImpl {
     //ml = 296.1046083333757 + 477198.8491083336*t + 0.0091916667090522*t2 + 0.0000143888893*t3;
     let ml = this.fix360(l - pe);
     // Rising length node orbit the moon:
-    let om =
-      259.183275 -
-      (6962911.23 * t) / 3600 +
-      (7.48 * t2) / 3600 +
-      (0.008 * t3) / 3600;
+    let om = 259.183275 - (6962911.23 * t) / 3600 + (7.48 * t2) / 3600 + (0.008 * t3) / 3600;
     // the average length Moon, measured from the bottom up hub orbit:
 
     let f = this.fix360(l - om);
@@ -119,8 +76,7 @@ export class YexaaPanchangImpl {
     let a8 = Math.sin(r2rad * (0.5875 + 9050118 * tb));
     let a9 = Math.sin(r2rad * (0.61043085 - 67718733 * tb));
 
-    let dlm =
-      0.84 * a3 + 0.31 * a7 + 14.27 * a1 + 7.261 * a2 + 0.282 * a4 + 0.237 * a6;
+    let dlm = 0.84 * a3 + 0.31 * a7 + 14.27 * a1 + 7.261 * a2 + 0.282 * a4 + 0.237 * a6;
     let dpm = -2.1 * a3 - 2.076 * a2 - 0.84 * a4 - 0.593 * a6;
     let dkm = 0.63 * a3 + 95.96 * a2 + 15.58 * a4 + 1.86 * a5;
     let dls = -6.4 * a3 - 0.27 * a8 - 1.89 * a6 + 0.2 * a9;
@@ -238,11 +194,7 @@ export class YexaaPanchangImpl {
 
     let ls = 279.696678 + 0.9856473354 * tdays + (1.089 * t2) / 3600;
     // perigee sun
-    let pes =
-      101.220833 +
-      (6189.03 * t) / 3600 +
-      (1.63 * t2) / 3600 +
-      (0.012 * t3) / 3600;
+    let pes = 101.220833 + (6189.03 * t) / 3600 + (1.63 * t2) / 3600 + (0.012 * t3) / 3600;
     // avg anomoly sun
 
     let ms = this.fix360(ls - pes + 180);
@@ -290,8 +242,7 @@ export class YexaaPanchangImpl {
     let il = ls + dl + truanom - ms;
 
     // corrections to abberations links
-    let r1 =
-      (1.0000002 * (1 - ex * ex)) / (1 + ex * Math.cos(truanom * this.d2r));
+    let r1 = (1.0000002 * (1 - ex * ex)) / (1 + ex * Math.cos(truanom * this.d2r));
     let rs = r1 + dr; // radius vector
     let ab = (20.496 * (1 - ex * ex)) / rs / 3600;
     ls = il + this.nutation(jd) - ab; // app len sun
@@ -364,10 +315,8 @@ export class YexaaPanchangImpl {
           flag = 0;
         }
       }
-      if (inak === n_naksh)
-        s_t.start = this.calData(jdt + (tzone - this.dt) / 24);
-      if (inak === n_naksh + 1)
-        s_t.end = this.calData(jdt + (tzone - this.dt) / 24);
+      if (inak === n_naksh) s_t.start = this.calData(jdt + (tzone - this.dt) / 24);
+      if (inak === n_naksh + 1) s_t.end = this.calData(jdt + (tzone - this.dt) / 24);
     }
     return s_t;
   }
@@ -414,10 +363,8 @@ export class YexaaPanchangImpl {
     let t2 = t * t;
     let t3 = t * t * t;
 
-    let jdnv =
-      2415020.75933 + 29.53058868 * knv + 0.0001178 * t2 - 0.000000155 * t3;
-    jdnv +=
-      0.00033 * Math.sin((166.56 + 132.87 * t - 0.009173 * t2) * this.d2r);
+    let jdnv = 2415020.75933 + 29.53058868 * knv + 0.0001178 * t2 - 0.000000155 * t3;
+    jdnv += 0.00033 * Math.sin((166.56 + 132.87 * t - 0.009173 * t2) * this.d2r);
     let m = 359.2242 + 29.10535608 * knv - 0.0000333 * t2 - 0.00000347 * t3;
     let ml = 306.0253 + 385.81691806 * knv + 0.0107306 * t2 + 0.00001236 * t3;
     let f = 21.2964 + 390.67050646 * knv - 0.0016528 * t2 - 0.00000239 * t3;
@@ -472,14 +419,11 @@ export class YexaaPanchangImpl {
     // avg len moon
     let l = 270.4341639 + 481267.8831417 * t - 0.0011333333 * t2;
     // avg anomaly sun
-    let ms =
-      358.4758333333334 + 35999.04974999958 * t - t2 * 1.500000059604645e-4;
+    let ms = 358.4758333333334 + 35999.04974999958 * t - t2 * 1.500000059604645e-4;
     // avg anomaly moon
-    let ml =
-      296.1046083333757 + 477198.8491083336 * t + 0.0091916667090522 * t2;
+    let ml = 296.1046083333757 + 477198.8491083336 * t + 0.0091916667090522 * t2;
     // the diff medium len of moon and sun (avg elongation moon)
-    let d =
-      350.7374861110581 + 445267.1142166667 * t - t2 * 1.436111132303874e-3;
+    let d = 350.7374861110581 + 445267.1142166667 * t - t2 * 1.436111132303874e-3;
 
     let om = 259.1832750002543 - 1934.142008333206 * t + 0.0020777778 * t2;
     ls *= this.d2r;
@@ -517,10 +461,7 @@ export class YexaaPanchangImpl {
     let t = (jd - 2415020) / 36525;
     // avg node len moon
     let om =
-      259.183275 -
-      1934.142008333206 * t +
-      0.0020777778 * t * t +
-      0.0000022222222 * t * t * t;
+      259.183275 - 1934.142008333206 * t + 0.0020777778 * t * t + 0.0000022222222 * t * t * t;
     // avg len sun
     let ls = 279.696678 + 36000.76892 * t + 0.0003025 * t * t;
     let aya =
@@ -547,46 +488,9 @@ export class YexaaPanchangImpl {
 
   dTime(jd: number) {
     var efdt = [
-      124,
-      85,
-      62,
-      48,
-      37,
-      26,
-      16,
-      10,
-      9,
-      10,
-      11,
-      11,
-      12,
-      13,
-      15,
-      16,
-      17,
-      17,
-      13.7,
-      12.5,
-      12,
-      7.5,
-      5.7,
-      7.1,
-      7.9,
-      1.6,
-      -5.4,
-      -5.9,
-      -2.7,
-      10.5,
-      21.2,
-      24,
-      24.3,
-      29.2,
-      33.2,
-      40.2,
-      50.5,
-      56.9,
-      65.7,
-      75.5,
+      124, 85, 62, 48, 37, 26, 16, 10, 9, 10, 11, 11, 12, 13, 15, 16, 17, 17, 13.7, 12.5, 12, 7.5,
+      5.7, 7.1, 7.9, 1.6, -5.4, -5.9, -2.7, 10.5, 21.2, 24, 24.3, 29.2, 33.2, 40.2, 50.5, 56.9,
+      65.7, 75.5,
     ];
     this.calData(jd);
     let dgod = this.kyear + (this.kmon - 1) / 12 + (this.kday - 1) / 365.25;

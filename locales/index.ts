@@ -1,13 +1,13 @@
-import { te } from "./te";
-import { en } from "./en";
-import { hi } from "./hi";
-import { kn } from "./kn";
+import { te } from './te';
+import { en } from './en';
+import { hi } from './hi';
+import { kn } from './kn';
 
 export const dictionaries = {
   te,
   en,
   hi,
-  kn
+  kn,
 };
 
 export type Locale = keyof typeof dictionaries;

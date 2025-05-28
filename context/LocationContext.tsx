@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { reactLocalStorage } from 'reactjs-localstorage';
@@ -29,19 +29,19 @@ export function LocationProvider({ children }: { children: ReactNode }) {
   const [location, setLocation] = useState<LocationData>(defaultValues);
 
   useEffect(() => {
-  const saved = reactLocalStorage.getObject('LOCATION');
-  if (
-    saved &&
-    typeof saved === 'object' &&
-    'city' in saved &&
-    'country' in saved &&
-    'lat' in saved &&
-    'lng' in saved &&
-    'timezone' in saved
-  ) {
-    setLocation(saved as LocationData);
-  }
-}, []);
+    const saved = reactLocalStorage.getObject('LOCATION');
+    if (
+      saved &&
+      typeof saved === 'object' &&
+      'city' in saved &&
+      'country' in saved &&
+      'lat' in saved &&
+      'lng' in saved &&
+      'timezone' in saved
+    ) {
+      setLocation(saved as LocationData);
+    }
+  }, []);
 
   const setLocationData = (data: LocationData) => {
     setLocation(data);

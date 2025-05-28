@@ -25,14 +25,10 @@ export default function SearchBarHeader({ mobile = false }: Props) {
         id="keyword"
         placeholder="Search"
         value={name}
-        onChange={(e) => setName(e.target.value)}
+        onChange={e => setName(e.target.value)}
       />
       {mobile && (
-        <button
-          type="submit"
-          className="search-icon-submit"
-          aria-label="Search"
-        >
+        <button type="submit" className="search-icon-submit" aria-label="Search">
           <i className="gr-text-10 text-primary fa fa-search cursor-pointer"></i>
         </button>
       )}

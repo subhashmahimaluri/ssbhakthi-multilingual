@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
@@ -37,7 +37,7 @@ export default function AutoComplete() {
     }
 
     fetch('/cityMap.json')
-      .then((res) => res.json())
+      .then(res => res.json())
       .then((data: CityData[]) => {
         setItems(data);
       })
@@ -50,7 +50,7 @@ export default function AutoComplete() {
 
     if (value.length > 0) {
       const regex = new RegExp(`^${value}`, 'i');
-      filteredSuggestions = items.filter((item) => regex.test(item.city)).slice(0, 5);
+      filteredSuggestions = items.filter(item => regex.test(item.city)).slice(0, 5);
     }
 
     setSuggestions(filteredSuggestions);
@@ -74,13 +74,9 @@ export default function AutoComplete() {
     if (suggestions.length === 0) return null;
 
     return (
-      <ul className="w-100 border border-gray px-0 bg-white">
+      <ul className="w-100 border-gray border bg-white px-0">
         {suggestions.map((item, index) => (
-          <li
-            key={index}
-            onClick={() => setValues(item)}
-            className="list-unstyled list_item-ct"
-          >
+          <li key={index} onClick={() => setValues(item)} className="list-unstyled list_item-ct">
             <div className="list_item_container ui-menu-item-wrapper">
               <img
                 className="list_item_image"
@@ -89,7 +85,9 @@ export default function AutoComplete() {
               />
               <strong>{item.city}</strong>
               <br />
-              <small>{item.province}, {item.country}</small>
+              <small>
+                {item.province}, {item.country}
+              </small>
             </div>
           </li>
         ))}
@@ -101,9 +99,9 @@ export default function AutoComplete() {
 
   return (
     <div className="w-100">
-      <div className="form-clear-text-wrapper px-0 py-2 mb-3 position-relative">
+      <div className="form-clear-text-wrapper position-relative mb-3 px-0 py-2">
         <input
-          className="w-100 py-2 px-2 search-input-pn"
+          className="w-100 search-input-pn px-2 py-2"
           id="query"
           type="text"
           autoComplete="off"

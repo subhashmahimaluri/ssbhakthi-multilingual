@@ -5,5 +5,5 @@ const nextConfig = {
     localeDetection: false, // Disable detection for single language instance
   },
   trailingSlash: false,
-}
-module.exports = nextConfig
+};
+module.exports = nextConfig;

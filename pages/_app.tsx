@@ -12,13 +12,13 @@ import NProgress from 'nprogress';
 const hindGuntur = Hind_Guntur({
   subsets: ['latin'],
   variable: '--font-hind-guntur',
-  weight: ['300', '400', '500', '600', '700']
+  weight: ['300', '400', '500', '600', '700'],
 });
 
 const nunitoSans = Nunito_Sans({
   subsets: ['latin'],
   variable: '--font-nunito-sans',
-  weight: ['300', '400', '600', '700', '800']
+  weight: ['300', '400', '600', '700', '800'],
 });
 
 export default function App({ Component, pageProps }: AppProps) {

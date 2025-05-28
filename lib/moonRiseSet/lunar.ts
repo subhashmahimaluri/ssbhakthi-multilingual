@@ -26,17 +26,16 @@ Date.prototype.jd = function (ts: TimeScale = 'UTC'): number {
     }
   }
 
-  return ((this.valueOf() + timeshift_seconds * 1000) / 86400000) + 2440587.5;
+  return (this.valueOf() + timeshift_seconds * 1000) / 86400000 + 2440587.5;
 };
 
 const gmst = (jd_ut1: number): number => {
   const tut1 = (jd_ut1 - 2451545.0) / 36525.0;
 
-  let gmst = 67310.54841
-    + tut1 * (876600.0 * 3600.0 + 8640184.812866)
-    + tut1 * (0.093104 - tut1 * 6.2e-6);
+  let gmst =
+    67310.54841 + tut1 * (876600.0 * 3600.0 + 8640184.812866) + tut1 * (0.093104 - tut1 * 6.2e-6);
 
-  gmst = (gmst % 86400.0) / 240.0 * Math.PI / 180.0;
+  gmst = (((gmst % 86400.0) / 240.0) * Math.PI) / 180.0;
   return gmst < 0 ? gmst + 2 * Math.PI : gmst;
 };
 
@@ -54,11 +53,7 @@ interface GeoCoord {
   geocentric_latitude: () => number;
 }
 
-export const moonRiseSet = (
-  thedate: Date,
-  coord: GeoCoord
-): { rise: Date; set: Date } => {
-
+export const moonRiseSet = (thedate: Date, coord: GeoCoord): { rise: Date; set: Date } => {
   const observer_longitude = coord.longitude();
   const observer_latitude = coord.geocentric_latitude();
   const tolerance = 10 / 86400;
@@ -76,27 +71,32 @@ export const moonRiseSet = (
     while (cnt < 10 && Math.abs(deltaUT) > tolerance) {
       const T = (JDtemp - 2451545.0) / 36525.0;
 
-      const lambda_ecliptic = deg2rad *
-        (218.32 + 481267.8813 * T +
+      const lambda_ecliptic =
+        deg2rad *
+        (218.32 +
+          481267.8813 * T +
           6.29 * sind(134.9 + 477198.85 * T) -
           1.27 * sind(259.2 - 413335.38 * T) +
           0.66 * sind(235.7 + 890534.23 * T) +
-          0.21 * sind(269.9 + 954397.70 * T) -
+          0.21 * sind(269.9 + 954397.7 * T) -
           0.19 * sind(357.5 + 35999.05 * T) -
           0.11 * sind(186.6 + 966404.05 * T));
 
-      const phi_ecliptic = deg2rad *
+      const phi_ecliptic =
+        deg2rad *
         (5.13 * sind(93.3 + 483202.03 * T) +
           0.28 * sind(228.2 + 960400.87 * T) -
           0.28 * sind(318.3 + 6003.18 * T) -
-          0.17 * sind(217.6 - 407332.20 * T));
+          0.17 * sind(217.6 - 407332.2 * T));
 
       const obliquity = (23.439291 - 0.0130042 * T) * deg2rad;
 
       const pX = Math.cos(phi_ecliptic) * Math.cos(lambda_ecliptic);
-      const pY = Math.cos(obliquity) * Math.cos(phi_ecliptic) * Math.sin(lambda_ecliptic) -
+      const pY =
+        Math.cos(obliquity) * Math.cos(phi_ecliptic) * Math.sin(lambda_ecliptic) -
         Math.sin(obliquity) * Math.sin(phi_ecliptic);
-      const pZ = Math.sin(obliquity) * Math.cos(phi_ecliptic) * Math.sin(lambda_ecliptic) +
+      const pZ =
+        Math.sin(obliquity) * Math.cos(phi_ecliptic) * Math.sin(lambda_ecliptic) +
         Math.cos(obliquity) * Math.sin(phi_ecliptic);
 
       const ra = Math.atan2(pY, pX);
@@ -116,7 +116,8 @@ export const moonRiseSet = (
         deltaGHA += (2.0 * Math.PI) / Math.abs(deltaUT);
       }
 
-      const cosLHAn = (0.00233 - Math.sin(observer_latitude) * Math.sin(dec)) /
+      const cosLHAn =
+        (0.00233 - Math.sin(observer_latitude) * Math.sin(dec)) /
         (Math.cos(observer_latitude) * Math.cos(dec));
 
       if (Math.abs(cosLHAn) > 1.0) {
@@ -130,9 +131,9 @@ export const moonRiseSet = (
         deltaUT = (LHAn - LHA) / deltaGHA;
 
         if (deltaUT < -0.5) {
-          deltaUT += 2.0 * Math.PI / deltaGHA;
+          deltaUT += (2.0 * Math.PI) / deltaGHA;
         } else if (deltaUT > 0.5) {
-          deltaUT -= 2.0 * Math.PI / deltaGHA;
+          deltaUT -= (2.0 * Math.PI) / deltaGHA;
         }
 
         if (deltaJD + deltaUT < 0.0) {

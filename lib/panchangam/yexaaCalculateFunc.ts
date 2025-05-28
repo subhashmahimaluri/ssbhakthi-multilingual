@@ -65,11 +65,7 @@ export class YexaaCalculateFunc {
     let s_yoga = panchangImpl.yoga(jd, zyoga, tzone);
 
     // Nakstra
-    n_naksh = this.getNakshatra(
-      panchangImpl,
-      panchangImpl.Lmoon,
-      panchangImpl.ayanamsa
-    );
+    n_naksh = this.getNakshatra(panchangImpl, panchangImpl.Lmoon, panchangImpl.ayanamsa);
     var s_naksh = panchangImpl.nakshatra(jd, n_naksh, tzone);
 
     // tithi
@@ -80,19 +76,12 @@ export class YexaaCalculateFunc {
     let n_paksha = this.getPaksha(n_tithi + 1);
 
     // Karana
-    let KaranaArray = this.getKarana(
-      panchangImpl.Lmoon,
-      panchangImpl.Lsun
-    );
+    let KaranaArray = this.getKarana(panchangImpl.Lmoon, panchangImpl.Lsun);
     n_karana = KaranaArray[0];
     let nk = KaranaArray[1];
     let s_karana = panchangImpl.tithi(jd, nk, tzone, 6);
 
-    let z = this.getRaasi(
-      panchangImpl,
-      panchangImpl.Lmoon,
-      panchangImpl.ayanamsa
-    );
+    let z = this.getRaasi(panchangImpl, panchangImpl.Lmoon, panchangImpl.ayanamsa);
 
     Ayanamsa.name = panchangImpl.lon2dms(panchangImpl.ayanamsa);
     Raasi.name = yexaaConstant.Raasi.name[z];
@@ -163,11 +152,7 @@ export class YexaaCalculateFunc {
     return Math.floor((Lmoon - Lsun) / 12);
   }
 
-  getNakshatra(
-    yexaaPanchangImpl: YexaaPanchangImpl,
-    Lmoon: number,
-    ayanamsa: number
-  ) {
+  getNakshatra(yexaaPanchangImpl: YexaaPanchangImpl, Lmoon: number, ayanamsa: number) {
     let Lmoon0 = yexaaPanchangImpl.fix360(Lmoon + ayanamsa);
     return Math.floor((Lmoon0 * 6) / 80);
   }
@@ -200,11 +185,7 @@ export class YexaaCalculateFunc {
     return [n_karana, nk];
   }
 
-  getRaasi(
-    yexaaPanchangImpl: YexaaPanchangImpl,
-    Lmoon: number,
-    ayanamsa: number
-  ) {
+  getRaasi(yexaaPanchangImpl: YexaaPanchangImpl, Lmoon: number, ayanamsa: number) {
     return Math.floor(Math.abs(yexaaPanchangImpl.fix360(Lmoon + ayanamsa)) / 30);
   }
 
@@ -222,33 +203,7 @@ export class YexaaCalculateFunc {
 
   getGanaViaNakshatra(raasiIndex: number) {
     let ganaPostions = [
-      0,
-      1,
-      2,
-      1,
-      0,
-      1,
-      0,
-      0,
-      2,
-      2,
-      1,
-      1,
-      0,
-      2,
-      0,
-      2,
-      0,
-      2,
-      2,
-      1,
-      1,
-      0,
-      2,
-      2,
-      1,
-      1,
-      0,
+      0, 1, 2, 1, 0, 1, 0, 0, 2, 2, 1, 1, 0, 2, 0, 2, 0, 2, 2, 1, 1, 0, 2, 2, 1, 1, 0,
     ];
     return ganaPostions[raasiIndex];
   }

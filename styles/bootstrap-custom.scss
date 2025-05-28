@@ -2,11 +2,11 @@
 // styles/bootstrap-custom.scss - Bootstrap Customization
 // =====================================================
 
-@use "sass:map";
+@use 'sass:map';
 
 // Load Bootstrap with all functions and variables first
-@use "~bootstrap/scss/functions";
-@use "~bootstrap/scss/variables" as *;
+@use '~bootstrap/scss/functions';
+@use '~bootstrap/scss/variables' as *;
 
 // Override Bootstrap variables
 $primary: #0d6efd;
@@ -24,10 +24,10 @@ $english-accent: #9c27b0;
 
 // Add custom theme colors
 $custom-colors: (
-  "telugu": $telugu-accent,
-  "hindi": $hindi-accent,
-  "kannada": $kannada-accent,
-  "english": $english-accent
+  'telugu': $telugu-accent,
+  'hindi': $hindi-accent,
+  'kannada': $kannada-accent,
+  'english': $english-accent,
 );
 
 // Merge custom colors into Bootstrap's theme map
@@ -47,7 +47,7 @@ $spacers: (
   4: $spacer * 1.5,
   5: $spacer * 3,
   6: $spacer * 4,
-  7: $spacer * 5
+  7: $spacer * 5,
 );
 
 $border-radius: 0.375rem;
@@ -55,4 +55,4 @@ $border-radius-sm: 0.25rem;
 $border-radius-lg: 0.5rem;
 
 // Load all Bootstrap
-@use "~bootstrap/scss/bootstrap";
+@use '~bootstrap/scss/bootstrap';

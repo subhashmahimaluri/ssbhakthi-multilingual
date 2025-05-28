@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 import Slider from 'react-slick';
-import imgSprite from "../assets/images/icons/panchangam_sprite.png";
+import imgSprite from '../assets/images/icons/panchangam_sprite.png';
 import { useTranslation } from '@/hooks/useTranslation';
 
 interface PanchangSlideProps {
@@ -21,12 +21,7 @@ const SliderStyled = styled(Slider)`
   }
 `;
 
-const PanchangSlide: React.FC<PanchangSlideProps> = ({
-  sunrise,
-  sunset,
-  moonrise,
-  moonset,
-}) => {
+const PanchangSlide: React.FC<PanchangSlideProps> = ({ sunrise, sunset, moonrise, moonset }) => {
   const elSlider = useRef<Slider>(null);
 
   const { t } = useTranslation();
@@ -111,13 +106,13 @@ const PanchangSlide: React.FC<PanchangSlideProps> = ({
         className="list-style-nav-btn list-style-nav-btn-prev"
         onClick={() => elSlider.current?.slickPrev()}
       >
-        <i className="icon text-white fa fa-angle-left"></i>
+        <i className="icon fa fa-angle-left text-white"></i>
       </div>
       <div
         className="list-style-nav-btn list-style-nav-btn-next"
         onClick={() => elSlider.current?.slickNext()}
       >
-        <i className="icon text-white fa fa-angle-right"></i>
+        <i className="icon fa fa-angle-right text-white"></i>
       </div>
 
       <style jsx>{`

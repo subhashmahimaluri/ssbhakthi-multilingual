@@ -11,30 +11,23 @@ interface LayoutProps {
   description?: string;
 }
 
-const Layout: React.FC<LayoutProps> = ({ 
-  children, 
-  title, 
-  description,
-}) => {
+const Layout: React.FC<LayoutProps> = ({ children, title, description }) => {
   return (
     <>
-     
       <Head>
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      
+
       <div className="d-flex flex-column min-vh-100">
         <Header />
-        
+
         <main className="flex-grow-1">
-          <Container>
-            {children}
-          </Container>
+          <Container>{children}</Container>
         </main>
-        
+
         <Footer />
       </div>
     </>

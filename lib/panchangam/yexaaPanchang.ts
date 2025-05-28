@@ -20,13 +20,7 @@ export class YexaaPanchang {
   }
 
   calendar(dt: Date, lat: number, lng: number, height?: number) {
-    return this.yexaaCalendar.calendar(
-      this.yexaaLocalConstant,
-      dt,
-      lat,
-      lng,
-      height
-    );
+    return this.yexaaCalendar.calendar(this.yexaaLocalConstant, dt, lat, lng, height);
   }
 
   sunTimer(date: Date, lat: number, lng: number, height?: number) {
@@ -34,11 +28,18 @@ export class YexaaPanchang {
     return this.yexaaSunMoonTimer.sunTimer(date, lat, lng, height);
   }
 
-  getYexaaConstant<C extends keyof YexaaLocalConstant, N extends keyof YexaaLocalConstant[C]>(category: C, name: N): YexaaLocalConstant[C][N] {
+  getYexaaConstant<C extends keyof YexaaLocalConstant, N extends keyof YexaaLocalConstant[C]>(
+    category: C,
+    name: N
+  ): YexaaLocalConstant[C][N] {
     return this.yexaaLocalConstant[category][name];
   }
 
-  setYexaaConstant<C extends keyof YexaaLocalConstant, N extends keyof YexaaLocalConstant[C]>(category: C, name: N, yexaalist: YexaaLocalConstant[C][N]) {
+  setYexaaConstant<C extends keyof YexaaLocalConstant, N extends keyof YexaaLocalConstant[C]>(
+    category: C,
+    name: N,
+    yexaalist: YexaaLocalConstant[C][N]
+  ) {
     (this.yexaaLocalConstant[category] as Record<N, YexaaLocalConstant[C][N]>)[name] = yexaalist;
   }
 

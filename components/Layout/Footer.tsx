@@ -5,9 +5,9 @@ import { useTranslation } from '@/hooks/useTranslation';
 
 const Footer: React.FC = () => {
   const { t } = useTranslation();
-  
+
   return (
-    <footer className="bg-dark text-light py-4 mt-5">
+    <footer className="bg-dark text-light mt-5 py-4">
       <Container>
         <Row>
           <Col md={6}>
