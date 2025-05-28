@@ -4,23 +4,23 @@ export const menuItems = [
     name: 'Home',
   },
   {
-    href: 'stotras',
+    href: '/stotras',
     name: 'Stotra',
     items: [
       {
-        href: 'stotras',
+        href: '/stotras',
         name: 'All Stotras',
       },
       {
-        href: 'sahasranamam',
+        href: '/sahasranamam',
         name: 'Sahasranamam',
       },
       {
-        href: 'ashtothram',
+        href: '/ashtothram',
         name: 'Ashtottara Shatanamavali',
       },
       {
-        href: 'sahasranamavali',
+        href: '/sahasranamavali',
         name: 'Sahasranamavali',
       },
     ],
@@ -30,29 +30,29 @@ export const menuItems = [
     name: 'Calendar',
     items: [
       {
-        href: 'calendar',
+        href: '/calendar',
         name: 'Calendar Home',
       },
       {
-        href: 'calendar/festivals',
+        href: '/calendar/festivals',
         name: 'Festivals',
       },
       {
-        href: 'calendar/vrathas',
+        href: '/calendar/vrathas',
         name: 'Vrathas & Upavasam',
       },
       {
-        href: 'calendar/eclipse',
+        href: '/calendar/eclipse',
         name: 'Solor and Lunar Eclipses',
       },
     ],
   },
   {
-    href: 'panchangam',
+    href: '/panchangam',
     name: 'Panchangam',
   },
   {
-    href: 'articles',
+    href: '/articles',
     name: 'Articles',
   },
 ];
