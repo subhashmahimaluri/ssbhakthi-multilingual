@@ -5,5 +5,5 @@ const nextConfig = {
     localeDetection: true,
   },
   trailingSlash: false,
-}
-module.exports = nextConfig
+};
+module.exports = nextConfig;

@@ -4,13 +4,7 @@ export class corr {
   fcor: number;
   dcor: number;
   lcor: number;
-  constructor(
-    mlcor: number,
-    mscor: number,
-    fcor: number,
-    dcor: number,
-    lcor: number
-  ) {
+  constructor(mlcor: number, mscor: number, fcor: number, dcor: number, lcor: number) {
     this.mlcor = mlcor;
     this.mscor = mscor;
     this.fcor = fcor;

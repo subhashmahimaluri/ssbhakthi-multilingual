@@ -18,7 +18,9 @@
     "start:hi": "cross-env DEFAULT_LOCALE=hi SUPPORTED_LOCALES=hi next start -p 3001",
     "start:kn": "cross-env DEFAULT_LOCALE=kn SUPPORTED_LOCALES=kn next start -p 3002",
     "start:all": "concurrently \"npm run start:te\" \"npm run start:hi\" \"npm run start:kn\"",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,scss}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,scss}\""
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
@@ -52,6 +54,8 @@
     "cross-env": "^7.0.3",
     "eslint": "^9.27.0",
     "eslint-config-next": "15.4.0-canary.51",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "typescript": "^5"
   }
 }

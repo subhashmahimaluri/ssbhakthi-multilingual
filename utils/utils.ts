@@ -51,9 +51,11 @@ export const formatFullDate = (date: Date | string): string => {
 
 export const formatMonth = (date: Date | string): string => {
   const inputDate = new Date(date);
-  return inputDate.toLocaleString('en-US', {
-    month: 'long',
-  }).toLowerCase();
+  return inputDate
+    .toLocaleString('en-US', {
+      month: 'long',
+    })
+    .toLowerCase();
 };
 
 export const formatDay = (date: Date | string): string => {
@@ -64,8 +66,18 @@ export const formatDay = (date: Date | string): string => {
 };
 
 const monthOrder = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ];
 
 export function groupTithiByMonth(tithiResults: any[]): { month: string; tithiData: any[] }[] {
@@ -86,7 +98,7 @@ export function groupTithiByMonth(tithiResults: any[]): { month: string; tithiDa
   }
 
   // Sort tithiData within each month
-  Object.values(monthMap).forEach((monthGroup) => {
+  Object.values(monthMap).forEach(monthGroup => {
     monthGroup.tithiData.sort((a, b) => {
       const dateA = new Date(a.tithi.start).getTime();
       const dateB = new Date(b.tithi.start).getTime();
@@ -100,8 +112,7 @@ export function groupTithiByMonth(tithiResults: any[]): { month: string; tithiDa
   );
 }
 
-export const capitalize = (word: string) =>
-  word.charAt(0).toUpperCase() + word.slice(1);
+export const capitalize = (word: string) => word.charAt(0).toUpperCase() + word.slice(1);
 
 export function interpolate(
   template: string | undefined | null,

@@ -7,7 +7,7 @@ const nextConfig = {
     localeDetection: true,
   },
   trailingSlash: false,
-  
+
   // SCSS configuration
   sassOptions: {
     includePaths: ['./styles'],
@@ -16,11 +16,11 @@ const nextConfig = {
       @import "styles/mixins.scss";
     `,
   },
-  
+
   // CSS modules support
   experimental: {
     cssChunking: 'strict', // Better CSS optimization for Next.js 15
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

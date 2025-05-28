@@ -1,4 +1,4 @@
-import { Dictionary, Locale } from "@/locales";
+import { Dictionary, Locale } from '@/locales';
 
 export interface TranslationContextType {
   t: Dictionary;

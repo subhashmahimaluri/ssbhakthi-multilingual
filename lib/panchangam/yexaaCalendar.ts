@@ -5,13 +5,7 @@ import { YexaaCalculateFunc } from './yexaaCalculateFunc';
 import { getAyana, getDrikRitu, getTeluguYearName } from './getCalendarExtras';
 
 export class YexaaCalendar {
-  calendar(
-    yexaaConstant: YexaaLocalConstant,
-    dt: Date,
-    lat: number,
-    lng: number,
-    height?: number
-  ) {
+  calendar(yexaaConstant: YexaaLocalConstant, dt: Date, lat: number, lng: number, height?: number) {
     let Tithi: any = {} as {};
     let Nakshatra: any = {} as {};
     let Yoga: any = {} as {};
@@ -105,16 +99,17 @@ export class YexaaCalendar {
     Ritu.name = yexaaConstant.Ritu.name[ritu];
     Ritu.name_en_UK = yexaaConstant.Ritu.name_en_UK[ritu];
 
-    const solarLongitude = yexaaPanchangImpl.fix360(yexaaPanchangImpl.sun(sunRise) + ayanamsaAtRise);
+    const solarLongitude = yexaaPanchangImpl.fix360(
+      yexaaPanchangImpl.sun(sunRise) + ayanamsaAtRise
+    );
 
     const isNewTeluguYearStarted = MoonMasa.ino === 0 && Tithi.ino === 0;
     const teluguYearIndex = this.getTeluguYearIndex(dt.getFullYear(), isNewTeluguYearStarted);
 
-
     // Get extras
     const ayana = getAyana(solarLongitude);
     const drikRitu = getDrikRitu(solarLongitude);
-    const teluguYear = getTeluguYearName(teluguYearIndex + 1);  
+    const teluguYear = getTeluguYearName(teluguYearIndex + 1);
 
     return {
       Tithi,
@@ -141,8 +136,7 @@ export class YexaaCalendar {
     const day = date.getDate();
 
     // Saka calendar starts on March 22 (or March 21 in leap years)
-    const isBeforeSakaStart =
-      (month < 3) || (month === 3 && day < 22);
+    const isBeforeSakaStart = month < 3 || (month === 3 && day < 22);
 
     return isBeforeSakaStart ? year - 79 - 1 : year - 79;
   }
@@ -150,7 +144,7 @@ export class YexaaCalendar {
   getTeluguYearIndex(currentYear: number, isNewYearStarted: boolean): number {
     const baseYear = 1867;
     const offset = isNewYearStarted ? 0 : -1;
-    return ((currentYear + offset) - baseYear + 60) % 60;
+    return (currentYear + offset - baseYear + 60) % 60;
   }
 
   // get tithi in (1-15) Sukla and (16-30) Krushna
@@ -216,11 +210,7 @@ export class YexaaCalendar {
     return n_yoga;
   }
 
-  getCalendarRaasi(
-    yexaaPanchangImpl: YexaaPanchangImpl,
-    Lsun: number,
-    ayanamsa: number
-  ) {
+  getCalendarRaasi(yexaaPanchangImpl: YexaaPanchangImpl, Lsun: number, ayanamsa: number) {
     let solar_nirayana = yexaaPanchangImpl.fix360(Lsun + ayanamsa);
     return Math.ceil(solar_nirayana / 30);
   }

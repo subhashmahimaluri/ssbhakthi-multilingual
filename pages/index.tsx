@@ -11,18 +11,18 @@ const HomePage: React.FC = () => {
 
   return (
     <Layout>
-      <Row className="py-5 mt-25">
-        <Col lg="5" md="12" className="py-5 my-5">
-        <div className="right-container bg-white shadow-1 text-black px-3 py-3 mb-3">
-        <h4>Search Bar</h4>
-        </div>
-        </Col>
-        <Col lg="7" md="12" className="py-5 my-5">
-        <div className="left-container bg-white shadow-1 panchangam-block">
-          <PanchangamTable />
+      <Row className="mt-25 py-5">
+        <Col lg="5" md="12" className="my-5 py-5">
+          <div className="right-container shadow-1 mb-3 bg-white px-3 py-3 text-black">
+            <h4>Search Bar</h4>
           </div>
         </Col>
-  </Row>
+        <Col lg="7" md="12" className="my-5 py-5">
+          <div className="left-container shadow-1 panchangam-block bg-white">
+            <PanchangamTable />
+          </div>
+        </Col>
+      </Row>
     </Layout>
   );
 };
