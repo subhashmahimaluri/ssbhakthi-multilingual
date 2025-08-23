@@ -3,7 +3,7 @@ import { Locale } from '@/locales';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/router';
-import SocialIcons from '../SocialIcons';
+import MyAccount from './MyAccount';
 
 export default function TopBar() {
   const { t, locale, switchLanguage } = useTranslation();
@@ -37,9 +37,10 @@ export default function TopBar() {
         </ul>
       </div>
 
-      {/* Right: Social Icons */}
+      {/* Right: Social Icons and MyAccount */}
       <div className="col-6 topbar-social text-end">
-        <SocialIcons />
+        {/* <SocialIcons /> */}
+        <MyAccount />
       </div>
     </div>
   );
