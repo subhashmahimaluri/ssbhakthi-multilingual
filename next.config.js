@@ -20,6 +20,7 @@ const nextConfig = {
   // CSS modules support
   experimental: {
     cssChunking: 'strict', // Better CSS optimization for Next.js 15
+    appDir: true, // Enable App Router
   },
 };
 

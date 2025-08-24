@@ -23,6 +23,10 @@
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,scss}\""
   },
   "dependencies": {
+    "@apollo/client": "^4.0.0",
+    "@auth/core": "^0.34.2",
+    "@ckeditor/ckeditor5-build-classic": "^41.4.2",
+    "@ckeditor/ckeditor5-react": "^11.0.0",
     "@fortawesome/fontawesome-free": "^6.7.2",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "@types/nprogress": "^0.2.3",
@@ -31,8 +35,10 @@
     "bootstrap": "^5.3.3",
     "date-fns": "^4.1.0",
     "fs": "^0.0.1-security",
+    "graphql": "^16.11.0",
     "lodash": "^4.17.21",
     "next": "^15.3.2",
+    "next-auth": "^4.24.11",
     "nprogress": "^0.2.0",
     "path": "^0.12.7",
     "postcss-preset-env": "^10.1.6",
