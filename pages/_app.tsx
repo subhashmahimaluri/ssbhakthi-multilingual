@@ -2,12 +2,13 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/globals.scss';
 
-import type { AppProps } from 'next/app';
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { LocationProvider } from '@/context/LocationContext';
+import { SessionProvider } from 'next-auth/react';
+import type { AppProps } from 'next/app';
 import { Hind_Guntur, Nunito_Sans } from 'next/font/google';
+import { useRouter } from 'next/router';
 import NProgress from 'nprogress';
+import { useEffect } from 'react';
 
 const hindGuntur = Hind_Guntur({
   subsets: ['latin'],
@@ -48,8 +49,10 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [router]);
 
   return (
-    <LocationProvider>
-      <Component {...pageProps} />
-    </LocationProvider>
+    <SessionProvider session={pageProps.session}>
+      <LocationProvider>
+        <Component {...pageProps} />
+      </LocationProvider>
+    </SessionProvider>
   );
 }

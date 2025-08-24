@@ -1,5 +1,8 @@
+'use client';
+
 import { useTranslation } from '@/hooks/useTranslation';
 import { Locale } from '@/locales';
+import { SessionProvider } from 'next-auth/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/router';
@@ -25,7 +28,7 @@ export default function TopBar() {
           {languages.map((language, index) => (
             <li key={index}>
               <Link
-                href={pathname} // keep the current path
+                href={pathname || '/'} // keep the current path
                 locale={language.code}
                 onClick={e => switchLanguage(language.code)}
                 className={locale === language.code ? 'lang-active' : ''}
@@ -39,8 +42,9 @@ export default function TopBar() {
 
       {/* Right: Social Icons and MyAccount */}
       <div className="col-6 topbar-social text-end">
-        {/* <SocialIcons /> */}
-        <MyAccount />
+        <SessionProvider>
+          <MyAccount />
+        </SessionProvider>
       </div>
     </div>
   );
